@@ -76,3 +76,13 @@ export type UserCard = Prisma.UserCardModel
  * 
  */
 export type CoinTransaction = Prisma.CoinTransactionModel
+/**
+ * Model CoinDrop
+ * 
+ */
+export type CoinDrop = Prisma.CoinDropModel
+/**
+ * Model Trade
+ * 
+ */
+export type Trade = Prisma.TradeModel

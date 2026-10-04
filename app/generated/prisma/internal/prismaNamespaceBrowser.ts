@@ -57,7 +57,9 @@ export const ModelName = {
   Verification: 'Verification',
   Card: 'Card',
   UserCard: 'UserCard',
-  CoinTransaction: 'CoinTransaction'
+  CoinTransaction: 'CoinTransaction',
+  CoinDrop: 'CoinDrop',
+  Trade: 'Trade'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -138,6 +140,7 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const CardScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  bio: 'bio',
   imageUrl: 'imageUrl',
   rarity: 'rarity',
   series: 'series'
@@ -165,6 +168,34 @@ export const CoinTransactionScalarFieldEnum = {
 } as const
 
 export type CoinTransactionScalarFieldEnum = (typeof CoinTransactionScalarFieldEnum)[keyof typeof CoinTransactionScalarFieldEnum]
+
+
+export const CoinDropScalarFieldEnum = {
+  id: 'id',
+  messageId: 'messageId',
+  channelId: 'channelId',
+  amount: 'amount',
+  createdBy: 'createdBy',
+  claimedById: 'claimedById',
+  claimedAt: 'claimedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CoinDropScalarFieldEnum = (typeof CoinDropScalarFieldEnum)[keyof typeof CoinDropScalarFieldEnum]
+
+
+export const TradeScalarFieldEnum = {
+  id: 'id',
+  creatorId: 'creatorId',
+  offeredCardId: 'offeredCardId',
+  wantedCardId: 'wantedCardId',
+  status: 'status',
+  acceptedById: 'acceptedById',
+  createdAt: 'createdAt',
+  completedAt: 'completedAt'
+} as const
+
+export type TradeScalarFieldEnum = (typeof TradeScalarFieldEnum)[keyof typeof TradeScalarFieldEnum]
 
 
 export const SortOrder = {

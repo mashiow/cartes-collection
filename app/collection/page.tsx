@@ -51,12 +51,15 @@ export default async function CollectionPage() {
           const quantity = quantities.get(card.id) ?? 0;
           const hasCard = quantity > 0;
 
-          return (
+          const content = (
             <div
-              key={card.id}
               className={`relative rounded-lg border-2 p-3 text-center ${
                 rarityStyles[card.rarity]
-              } ${hasCard ? "" : "opacity-40 grayscale"}`}
+              } ${
+                hasCard
+                  ? "transition hover:scale-105"
+                  : "opacity-40 grayscale"
+              }`}
             >
               {quantity > 1 && (
                 <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-0.5 text-xs">
@@ -76,8 +79,18 @@ export default async function CollectionPage() {
                 )}
               </div>
               <p className="font-semibold">{hasCard ? card.name : "???"}</p>
-              <p className="text-xs text-gray-400">{rarityLabels[card.rarity]}</p>
+              <p className="text-xs text-gray-400">
+                {rarityLabels[card.rarity]}
+              </p>
             </div>
+          );
+
+          return hasCard ? (
+            <Link key={card.id} href={`/collection/${card.id}`}>
+              {content}
+            </Link>
+          ) : (
+            <div key={card.id}>{content}</div>
           );
         })}
       </div>

@@ -17,3 +17,12 @@ export const Rarity = {
 } as const
 
 export type Rarity = (typeof Rarity)[keyof typeof Rarity]
+
+
+export const TradeStatus = {
+  OPEN: 'OPEN',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type TradeStatus = (typeof TradeStatus)[keyof typeof TradeStatus]

@@ -27,6 +27,7 @@ export type AggregateCard = {
 export type CardMinAggregateOutputType = {
   id: string | null
   name: string | null
+  bio: string | null
   imageUrl: string | null
   rarity: $Enums.Rarity | null
   series: string | null
@@ -35,6 +36,7 @@ export type CardMinAggregateOutputType = {
 export type CardMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  bio: string | null
   imageUrl: string | null
   rarity: $Enums.Rarity | null
   series: string | null
@@ -43,6 +45,7 @@ export type CardMaxAggregateOutputType = {
 export type CardCountAggregateOutputType = {
   id: number
   name: number
+  bio: number
   imageUrl: number
   rarity: number
   series: number
@@ -53,6 +56,7 @@ export type CardCountAggregateOutputType = {
 export type CardMinAggregateInputType = {
   id?: true
   name?: true
+  bio?: true
   imageUrl?: true
   rarity?: true
   series?: true
@@ -61,6 +65,7 @@ export type CardMinAggregateInputType = {
 export type CardMaxAggregateInputType = {
   id?: true
   name?: true
+  bio?: true
   imageUrl?: true
   rarity?: true
   series?: true
@@ -69,6 +74,7 @@ export type CardMaxAggregateInputType = {
 export type CardCountAggregateInputType = {
   id?: true
   name?: true
+  bio?: true
   imageUrl?: true
   rarity?: true
   series?: true
@@ -150,6 +156,7 @@ export type CardGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type CardGroupByOutputType = {
   id: string
   name: string
+  bio: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
@@ -179,19 +186,25 @@ export type CardWhereInput = {
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   id?: Prisma.StringFilter<"Card"> | string
   name?: Prisma.StringFilter<"Card"> | string
+  bio?: Prisma.StringFilter<"Card"> | string
   imageUrl?: Prisma.StringFilter<"Card"> | string
   rarity?: Prisma.EnumRarityFilter<"Card"> | $Enums.Rarity
   series?: Prisma.StringFilter<"Card"> | string
   owners?: Prisma.UserCardListRelationFilter
+  tradesOffered?: Prisma.TradeListRelationFilter
+  tradesWanted?: Prisma.TradeListRelationFilter
 }
 
 export type CardOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   rarity?: Prisma.SortOrder
   series?: Prisma.SortOrder
   owners?: Prisma.UserCardOrderByRelationAggregateInput
+  tradesOffered?: Prisma.TradeOrderByRelationAggregateInput
+  tradesWanted?: Prisma.TradeOrderByRelationAggregateInput
 }
 
 export type CardWhereUniqueInput = Prisma.AtLeast<{
@@ -200,15 +213,19 @@ export type CardWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CardWhereInput[]
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   name?: Prisma.StringFilter<"Card"> | string
+  bio?: Prisma.StringFilter<"Card"> | string
   imageUrl?: Prisma.StringFilter<"Card"> | string
   rarity?: Prisma.EnumRarityFilter<"Card"> | $Enums.Rarity
   series?: Prisma.StringFilter<"Card"> | string
   owners?: Prisma.UserCardListRelationFilter
+  tradesOffered?: Prisma.TradeListRelationFilter
+  tradesWanted?: Prisma.TradeListRelationFilter
 }, "id">
 
 export type CardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   rarity?: Prisma.SortOrder
   series?: Prisma.SortOrder
@@ -223,6 +240,7 @@ export type CardScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CardScalarWhereWithAggregatesInput | Prisma.CardScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Card"> | string
   name?: Prisma.StringWithAggregatesFilter<"Card"> | string
+  bio?: Prisma.StringWithAggregatesFilter<"Card"> | string
   imageUrl?: Prisma.StringWithAggregatesFilter<"Card"> | string
   rarity?: Prisma.EnumRarityWithAggregatesFilter<"Card"> | $Enums.Rarity
   series?: Prisma.StringWithAggregatesFilter<"Card"> | string
@@ -231,42 +249,55 @@ export type CardScalarWhereWithAggregatesInput = {
 export type CardCreateInput = {
   id?: string
   name: string
+  bio?: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
   owners?: Prisma.UserCardCreateNestedManyWithoutCardInput
+  tradesOffered?: Prisma.TradeCreateNestedManyWithoutOfferedCardInput
+  tradesWanted?: Prisma.TradeCreateNestedManyWithoutWantedCardInput
 }
 
 export type CardUncheckedCreateInput = {
   id?: string
   name: string
+  bio?: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
   owners?: Prisma.UserCardUncheckedCreateNestedManyWithoutCardInput
+  tradesOffered?: Prisma.TradeUncheckedCreateNestedManyWithoutOfferedCardInput
+  tradesWanted?: Prisma.TradeUncheckedCreateNestedManyWithoutWantedCardInput
 }
 
 export type CardUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
   owners?: Prisma.UserCardUpdateManyWithoutCardNestedInput
+  tradesOffered?: Prisma.TradeUpdateManyWithoutOfferedCardNestedInput
+  tradesWanted?: Prisma.TradeUpdateManyWithoutWantedCardNestedInput
 }
 
 export type CardUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
   owners?: Prisma.UserCardUncheckedUpdateManyWithoutCardNestedInput
+  tradesOffered?: Prisma.TradeUncheckedUpdateManyWithoutOfferedCardNestedInput
+  tradesWanted?: Prisma.TradeUncheckedUpdateManyWithoutWantedCardNestedInput
 }
 
 export type CardCreateManyInput = {
   id?: string
   name: string
+  bio?: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
@@ -275,6 +306,7 @@ export type CardCreateManyInput = {
 export type CardUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
@@ -283,6 +315,7 @@ export type CardUpdateManyMutationInput = {
 export type CardUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
@@ -291,6 +324,7 @@ export type CardUncheckedUpdateManyInput = {
 export type CardCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   rarity?: Prisma.SortOrder
   series?: Prisma.SortOrder
@@ -299,6 +333,7 @@ export type CardCountOrderByAggregateInput = {
 export type CardMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   rarity?: Prisma.SortOrder
   series?: Prisma.SortOrder
@@ -307,6 +342,7 @@ export type CardMaxOrderByAggregateInput = {
 export type CardMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   rarity?: Prisma.SortOrder
   series?: Prisma.SortOrder
@@ -335,20 +371,54 @@ export type CardUpdateOneRequiredWithoutOwnersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutOwnersInput, Prisma.CardUpdateWithoutOwnersInput>, Prisma.CardUncheckedUpdateWithoutOwnersInput>
 }
 
+export type CardCreateNestedOneWithoutTradesOfferedInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutTradesOfferedInput, Prisma.CardUncheckedCreateWithoutTradesOfferedInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutTradesOfferedInput
+  connect?: Prisma.CardWhereUniqueInput
+}
+
+export type CardCreateNestedOneWithoutTradesWantedInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutTradesWantedInput, Prisma.CardUncheckedCreateWithoutTradesWantedInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutTradesWantedInput
+  connect?: Prisma.CardWhereUniqueInput
+}
+
+export type CardUpdateOneRequiredWithoutTradesOfferedNestedInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutTradesOfferedInput, Prisma.CardUncheckedCreateWithoutTradesOfferedInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutTradesOfferedInput
+  upsert?: Prisma.CardUpsertWithoutTradesOfferedInput
+  connect?: Prisma.CardWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutTradesOfferedInput, Prisma.CardUpdateWithoutTradesOfferedInput>, Prisma.CardUncheckedUpdateWithoutTradesOfferedInput>
+}
+
+export type CardUpdateOneRequiredWithoutTradesWantedNestedInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutTradesWantedInput, Prisma.CardUncheckedCreateWithoutTradesWantedInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutTradesWantedInput
+  upsert?: Prisma.CardUpsertWithoutTradesWantedInput
+  connect?: Prisma.CardWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutTradesWantedInput, Prisma.CardUpdateWithoutTradesWantedInput>, Prisma.CardUncheckedUpdateWithoutTradesWantedInput>
+}
+
 export type CardCreateWithoutOwnersInput = {
   id?: string
   name: string
+  bio?: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
+  tradesOffered?: Prisma.TradeCreateNestedManyWithoutOfferedCardInput
+  tradesWanted?: Prisma.TradeCreateNestedManyWithoutWantedCardInput
 }
 
 export type CardUncheckedCreateWithoutOwnersInput = {
   id?: string
   name: string
+  bio?: string
   imageUrl: string
   rarity: $Enums.Rarity
   series: string
+  tradesOffered?: Prisma.TradeUncheckedCreateNestedManyWithoutOfferedCardInput
+  tradesWanted?: Prisma.TradeUncheckedCreateNestedManyWithoutWantedCardInput
 }
 
 export type CardCreateOrConnectWithoutOwnersInput = {
@@ -370,17 +440,143 @@ export type CardUpdateToOneWithWhereWithoutOwnersInput = {
 export type CardUpdateWithoutOwnersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
+  tradesOffered?: Prisma.TradeUpdateManyWithoutOfferedCardNestedInput
+  tradesWanted?: Prisma.TradeUpdateManyWithoutWantedCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutOwnersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   series?: Prisma.StringFieldUpdateOperationsInput | string
+  tradesOffered?: Prisma.TradeUncheckedUpdateManyWithoutOfferedCardNestedInput
+  tradesWanted?: Prisma.TradeUncheckedUpdateManyWithoutWantedCardNestedInput
+}
+
+export type CardCreateWithoutTradesOfferedInput = {
+  id?: string
+  name: string
+  bio?: string
+  imageUrl: string
+  rarity: $Enums.Rarity
+  series: string
+  owners?: Prisma.UserCardCreateNestedManyWithoutCardInput
+  tradesWanted?: Prisma.TradeCreateNestedManyWithoutWantedCardInput
+}
+
+export type CardUncheckedCreateWithoutTradesOfferedInput = {
+  id?: string
+  name: string
+  bio?: string
+  imageUrl: string
+  rarity: $Enums.Rarity
+  series: string
+  owners?: Prisma.UserCardUncheckedCreateNestedManyWithoutCardInput
+  tradesWanted?: Prisma.TradeUncheckedCreateNestedManyWithoutWantedCardInput
+}
+
+export type CardCreateOrConnectWithoutTradesOfferedInput = {
+  where: Prisma.CardWhereUniqueInput
+  create: Prisma.XOR<Prisma.CardCreateWithoutTradesOfferedInput, Prisma.CardUncheckedCreateWithoutTradesOfferedInput>
+}
+
+export type CardCreateWithoutTradesWantedInput = {
+  id?: string
+  name: string
+  bio?: string
+  imageUrl: string
+  rarity: $Enums.Rarity
+  series: string
+  owners?: Prisma.UserCardCreateNestedManyWithoutCardInput
+  tradesOffered?: Prisma.TradeCreateNestedManyWithoutOfferedCardInput
+}
+
+export type CardUncheckedCreateWithoutTradesWantedInput = {
+  id?: string
+  name: string
+  bio?: string
+  imageUrl: string
+  rarity: $Enums.Rarity
+  series: string
+  owners?: Prisma.UserCardUncheckedCreateNestedManyWithoutCardInput
+  tradesOffered?: Prisma.TradeUncheckedCreateNestedManyWithoutOfferedCardInput
+}
+
+export type CardCreateOrConnectWithoutTradesWantedInput = {
+  where: Prisma.CardWhereUniqueInput
+  create: Prisma.XOR<Prisma.CardCreateWithoutTradesWantedInput, Prisma.CardUncheckedCreateWithoutTradesWantedInput>
+}
+
+export type CardUpsertWithoutTradesOfferedInput = {
+  update: Prisma.XOR<Prisma.CardUpdateWithoutTradesOfferedInput, Prisma.CardUncheckedUpdateWithoutTradesOfferedInput>
+  create: Prisma.XOR<Prisma.CardCreateWithoutTradesOfferedInput, Prisma.CardUncheckedCreateWithoutTradesOfferedInput>
+  where?: Prisma.CardWhereInput
+}
+
+export type CardUpdateToOneWithWhereWithoutTradesOfferedInput = {
+  where?: Prisma.CardWhereInput
+  data: Prisma.XOR<Prisma.CardUpdateWithoutTradesOfferedInput, Prisma.CardUncheckedUpdateWithoutTradesOfferedInput>
+}
+
+export type CardUpdateWithoutTradesOfferedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  series?: Prisma.StringFieldUpdateOperationsInput | string
+  owners?: Prisma.UserCardUpdateManyWithoutCardNestedInput
+  tradesWanted?: Prisma.TradeUpdateManyWithoutWantedCardNestedInput
+}
+
+export type CardUncheckedUpdateWithoutTradesOfferedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  series?: Prisma.StringFieldUpdateOperationsInput | string
+  owners?: Prisma.UserCardUncheckedUpdateManyWithoutCardNestedInput
+  tradesWanted?: Prisma.TradeUncheckedUpdateManyWithoutWantedCardNestedInput
+}
+
+export type CardUpsertWithoutTradesWantedInput = {
+  update: Prisma.XOR<Prisma.CardUpdateWithoutTradesWantedInput, Prisma.CardUncheckedUpdateWithoutTradesWantedInput>
+  create: Prisma.XOR<Prisma.CardCreateWithoutTradesWantedInput, Prisma.CardUncheckedCreateWithoutTradesWantedInput>
+  where?: Prisma.CardWhereInput
+}
+
+export type CardUpdateToOneWithWhereWithoutTradesWantedInput = {
+  where?: Prisma.CardWhereInput
+  data: Prisma.XOR<Prisma.CardUpdateWithoutTradesWantedInput, Prisma.CardUncheckedUpdateWithoutTradesWantedInput>
+}
+
+export type CardUpdateWithoutTradesWantedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  series?: Prisma.StringFieldUpdateOperationsInput | string
+  owners?: Prisma.UserCardUpdateManyWithoutCardNestedInput
+  tradesOffered?: Prisma.TradeUpdateManyWithoutOfferedCardNestedInput
+}
+
+export type CardUncheckedUpdateWithoutTradesWantedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  series?: Prisma.StringFieldUpdateOperationsInput | string
+  owners?: Prisma.UserCardUncheckedUpdateManyWithoutCardNestedInput
+  tradesOffered?: Prisma.TradeUncheckedUpdateManyWithoutOfferedCardNestedInput
 }
 
 
@@ -390,10 +586,14 @@ export type CardUncheckedUpdateWithoutOwnersInput = {
 
 export type CardCountOutputType = {
   owners: number
+  tradesOffered: number
+  tradesWanted: number
 }
 
 export type CardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owners?: boolean | CardCountOutputTypeCountOwnersArgs
+  tradesOffered?: boolean | CardCountOutputTypeCountTradesOfferedArgs
+  tradesWanted?: boolean | CardCountOutputTypeCountTradesWantedArgs
 }
 
 /**
@@ -413,20 +613,38 @@ export type CardCountOutputTypeCountOwnersArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.UserCardWhereInput
 }
 
+/**
+ * CardCountOutputType without action
+ */
+export type CardCountOutputTypeCountTradesOfferedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TradeWhereInput
+}
+
+/**
+ * CardCountOutputType without action
+ */
+export type CardCountOutputTypeCountTradesWantedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TradeWhereInput
+}
+
 
 export type CardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  bio?: boolean
   imageUrl?: boolean
   rarity?: boolean
   series?: boolean
   owners?: boolean | Prisma.Card$ownersArgs<ExtArgs>
+  tradesOffered?: boolean | Prisma.Card$tradesOfferedArgs<ExtArgs>
+  tradesWanted?: boolean | Prisma.Card$tradesWantedArgs<ExtArgs>
   _count?: boolean | Prisma.CardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["card"]>
 
 export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  bio?: boolean
   imageUrl?: boolean
   rarity?: boolean
   series?: boolean
@@ -435,6 +653,7 @@ export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  bio?: boolean
   imageUrl?: boolean
   rarity?: boolean
   series?: boolean
@@ -443,14 +662,17 @@ export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type CardSelectScalar = {
   id?: boolean
   name?: boolean
+  bio?: boolean
   imageUrl?: boolean
   rarity?: boolean
   series?: boolean
 }
 
-export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "imageUrl" | "rarity" | "series", ExtArgs["result"]["card"]>
+export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "bio" | "imageUrl" | "rarity" | "series", ExtArgs["result"]["card"]>
 export type CardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owners?: boolean | Prisma.Card$ownersArgs<ExtArgs>
+  tradesOffered?: boolean | Prisma.Card$tradesOfferedArgs<ExtArgs>
+  tradesWanted?: boolean | Prisma.Card$tradesWantedArgs<ExtArgs>
   _count?: boolean | Prisma.CardCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -460,10 +682,13 @@ export type $CardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Card"
   objects: {
     owners: Prisma.$UserCardPayload<ExtArgs>[]
+    tradesOffered: Prisma.$TradePayload<ExtArgs>[]
+    tradesWanted: Prisma.$TradePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    bio: string
     imageUrl: string
     rarity: $Enums.Rarity
     series: string
@@ -862,6 +1087,8 @@ readonly fields: CardFieldRefs;
 export interface Prisma__CardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owners<T extends Prisma.Card$ownersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$ownersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tradesOffered<T extends Prisma.Card$tradesOfferedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$tradesOfferedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tradesWanted<T extends Prisma.Card$tradesWantedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$tradesWantedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -893,6 +1120,7 @@ export interface Prisma__CardClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface CardFieldRefs {
   readonly id: Prisma.FieldRef<"Card", 'String'>
   readonly name: Prisma.FieldRef<"Card", 'String'>
+  readonly bio: Prisma.FieldRef<"Card", 'String'>
   readonly imageUrl: Prisma.FieldRef<"Card", 'String'>
   readonly rarity: Prisma.FieldRef<"Card", 'Rarity'>
   readonly series: Prisma.FieldRef<"Card", 'String'>
@@ -1310,6 +1538,54 @@ export type Card$ownersArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.UserCardScalarFieldEnum | Prisma.UserCardScalarFieldEnum[]
+}
+
+/**
+ * Card.tradesOffered
+ */
+export type Card$tradesOfferedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trade
+   */
+  select?: Prisma.TradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trade
+   */
+  omit?: Prisma.TradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeInclude<ExtArgs> | null
+  where?: Prisma.TradeWhereInput
+  orderBy?: Prisma.TradeOrderByWithRelationInput | Prisma.TradeOrderByWithRelationInput[]
+  cursor?: Prisma.TradeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TradeScalarFieldEnum | Prisma.TradeScalarFieldEnum[]
+}
+
+/**
+ * Card.tradesWanted
+ */
+export type Card$tradesWantedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trade
+   */
+  select?: Prisma.TradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trade
+   */
+  omit?: Prisma.TradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeInclude<ExtArgs> | null
+  where?: Prisma.TradeWhereInput
+  orderBy?: Prisma.TradeOrderByWithRelationInput | Prisma.TradeOrderByWithRelationInput[]
+  cursor?: Prisma.TradeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TradeScalarFieldEnum | Prisma.TradeScalarFieldEnum[]
 }
 
 /**

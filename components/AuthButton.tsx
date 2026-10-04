@@ -13,7 +13,7 @@ export default function AuthButton() {
         onClick={() =>
           authClient.signIn.social({ provider: "discord", callbackURL: "/" })
         }
-        className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500"
+        className="rounded bg-[#454545] px-4 py-2 text-white hover:bg-[#5a5a5a]"
       >
         Se connecter avec Discord
       </button>
@@ -25,7 +25,7 @@ export default function AuthButton() {
       <p>Salut {session.user.name} !</p>
       <button
         onClick={() => authClient.signOut()}
-        className="rounded bg-gray-700 px-4 py-2 text-white hover:bg-gray-600"
+        className="rounded bg-[#454545] px-4 py-2 text-white hover:bg-[#5a5a5a]"
       >
         Se déconnecter
       </button>

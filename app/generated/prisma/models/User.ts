@@ -244,6 +244,8 @@ export type UserWhereInput = {
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
   transactions?: Prisma.CoinTransactionListRelationFilter
+  tradesCreated?: Prisma.TradeListRelationFilter
+  tradesAccepted?: Prisma.TradeListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -259,6 +261,8 @@ export type UserOrderByWithRelationInput = {
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   cards?: Prisma.UserCardOrderByRelationAggregateInput
   transactions?: Prisma.CoinTransactionOrderByRelationAggregateInput
+  tradesCreated?: Prisma.TradeOrderByRelationAggregateInput
+  tradesAccepted?: Prisma.TradeOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -277,6 +281,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
   transactions?: Prisma.CoinTransactionListRelationFilter
+  tradesCreated?: Prisma.TradeListRelationFilter
+  tradesAccepted?: Prisma.TradeListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -322,6 +328,8 @@ export type UserCreateInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -337,6 +345,8 @@ export type UserUncheckedCreateInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUpdateInput = {
@@ -352,6 +362,8 @@ export type UserUpdateInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -367,6 +379,8 @@ export type UserUncheckedUpdateInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -446,6 +460,11 @@ export type UserSumOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -528,6 +547,36 @@ export type UserUpdateOneRequiredWithoutTransactionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransactionsInput, Prisma.UserUpdateWithoutTransactionsInput>, Prisma.UserUncheckedUpdateWithoutTransactionsInput>
 }
 
+export type UserCreateNestedOneWithoutTradesCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTradesCreatedInput, Prisma.UserUncheckedCreateWithoutTradesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTradesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutTradesAcceptedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTradesAcceptedInput, Prisma.UserUncheckedCreateWithoutTradesAcceptedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTradesAcceptedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTradesCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTradesCreatedInput, Prisma.UserUncheckedCreateWithoutTradesCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTradesCreatedInput
+  upsert?: Prisma.UserUpsertWithoutTradesCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTradesCreatedInput, Prisma.UserUpdateWithoutTradesCreatedInput>, Prisma.UserUncheckedUpdateWithoutTradesCreatedInput>
+}
+
+export type UserUpdateOneWithoutTradesAcceptedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTradesAcceptedInput, Prisma.UserUncheckedCreateWithoutTradesAcceptedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTradesAcceptedInput
+  upsert?: Prisma.UserUpsertWithoutTradesAcceptedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTradesAcceptedInput, Prisma.UserUpdateWithoutTradesAcceptedInput>, Prisma.UserUncheckedUpdateWithoutTradesAcceptedInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -540,6 +589,8 @@ export type UserCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -554,6 +605,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -584,6 +637,8 @@ export type UserUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -598,6 +653,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -612,6 +669,8 @@ export type UserCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -626,6 +685,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -656,6 +717,8 @@ export type UserUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -670,6 +733,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserCreateWithoutCardsInput = {
@@ -684,6 +749,8 @@ export type UserCreateWithoutCardsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUncheckedCreateWithoutCardsInput = {
@@ -698,6 +765,8 @@ export type UserUncheckedCreateWithoutCardsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserCreateOrConnectWithoutCardsInput = {
@@ -728,6 +797,8 @@ export type UserUpdateWithoutCardsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCardsInput = {
@@ -742,6 +813,8 @@ export type UserUncheckedUpdateWithoutCardsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserCreateWithoutTransactionsInput = {
@@ -756,6 +829,8 @@ export type UserCreateWithoutTransactionsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserUncheckedCreateWithoutTransactionsInput = {
@@ -770,6 +845,8 @@ export type UserUncheckedCreateWithoutTransactionsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
 }
 
 export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -800,6 +877,8 @@ export type UserUpdateWithoutTransactionsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTransactionsInput = {
@@ -814,6 +893,168 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
+}
+
+export type UserCreateWithoutTradesCreatedInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  coins?: number
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
+  transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesAccepted?: Prisma.TradeCreateNestedManyWithoutAcceptedByInput
+}
+
+export type UserUncheckedCreateWithoutTradesCreatedInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  coins?: number
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
+  transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesAccepted?: Prisma.TradeUncheckedCreateNestedManyWithoutAcceptedByInput
+}
+
+export type UserCreateOrConnectWithoutTradesCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTradesCreatedInput, Prisma.UserUncheckedCreateWithoutTradesCreatedInput>
+}
+
+export type UserCreateWithoutTradesAcceptedInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  coins?: number
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
+  transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutTradesAcceptedInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  coins?: number
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
+  transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
+  tradesCreated?: Prisma.TradeUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutTradesAcceptedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTradesAcceptedInput, Prisma.UserUncheckedCreateWithoutTradesAcceptedInput>
+}
+
+export type UserUpsertWithoutTradesCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTradesCreatedInput, Prisma.UserUncheckedUpdateWithoutTradesCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTradesCreatedInput, Prisma.UserUncheckedCreateWithoutTradesCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTradesCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTradesCreatedInput, Prisma.UserUncheckedUpdateWithoutTradesCreatedInput>
+}
+
+export type UserUpdateWithoutTradesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coins?: Prisma.IntFieldUpdateOperationsInput | number
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesAccepted?: Prisma.TradeUpdateManyWithoutAcceptedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTradesCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coins?: Prisma.IntFieldUpdateOperationsInput | number
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesAccepted?: Prisma.TradeUncheckedUpdateManyWithoutAcceptedByNestedInput
+}
+
+export type UserUpsertWithoutTradesAcceptedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTradesAcceptedInput, Prisma.UserUncheckedUpdateWithoutTradesAcceptedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTradesAcceptedInput, Prisma.UserUncheckedCreateWithoutTradesAcceptedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTradesAcceptedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTradesAcceptedInput, Prisma.UserUncheckedUpdateWithoutTradesAcceptedInput>
+}
+
+export type UserUpdateWithoutTradesAcceptedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coins?: Prisma.IntFieldUpdateOperationsInput | number
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTradesAcceptedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coins?: Prisma.IntFieldUpdateOperationsInput | number
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
+  transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
+  tradesCreated?: Prisma.TradeUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 
@@ -826,6 +1067,8 @@ export type UserCountOutputType = {
   accounts: number
   cards: number
   transactions: number
+  tradesCreated: number
+  tradesAccepted: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -833,6 +1076,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   cards?: boolean | UserCountOutputTypeCountCardsArgs
   transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
+  tradesCreated?: boolean | UserCountOutputTypeCountTradesCreatedArgs
+  tradesAccepted?: boolean | UserCountOutputTypeCountTradesAcceptedArgs
 }
 
 /**
@@ -873,6 +1118,20 @@ export type UserCountOutputTypeCountTransactionsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.CoinTransactionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTradesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TradeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTradesAcceptedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TradeWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -887,6 +1146,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   cards?: boolean | Prisma.User$cardsArgs<ExtArgs>
   transactions?: boolean | Prisma.User$transactionsArgs<ExtArgs>
+  tradesCreated?: boolean | Prisma.User$tradesCreatedArgs<ExtArgs>
+  tradesAccepted?: boolean | Prisma.User$tradesAcceptedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -929,6 +1190,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   cards?: boolean | Prisma.User$cardsArgs<ExtArgs>
   transactions?: boolean | Prisma.User$transactionsArgs<ExtArgs>
+  tradesCreated?: boolean | Prisma.User$tradesCreatedArgs<ExtArgs>
+  tradesAccepted?: boolean | Prisma.User$tradesAcceptedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -941,6 +1204,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     cards: Prisma.$UserCardPayload<ExtArgs>[]
     transactions: Prisma.$CoinTransactionPayload<ExtArgs>[]
+    tradesCreated: Prisma.$TradePayload<ExtArgs>[]
+    tradesAccepted: Prisma.$TradePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1349,6 +1614,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cards<T extends Prisma.User$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transactions<T extends Prisma.User$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoinTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tradesCreated<T extends Prisma.User$tradesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tradesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tradesAccepted<T extends Prisma.User$tradesAcceptedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tradesAcceptedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1872,6 +2139,54 @@ export type User$transactionsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.CoinTransactionScalarFieldEnum | Prisma.CoinTransactionScalarFieldEnum[]
+}
+
+/**
+ * User.tradesCreated
+ */
+export type User$tradesCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trade
+   */
+  select?: Prisma.TradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trade
+   */
+  omit?: Prisma.TradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeInclude<ExtArgs> | null
+  where?: Prisma.TradeWhereInput
+  orderBy?: Prisma.TradeOrderByWithRelationInput | Prisma.TradeOrderByWithRelationInput[]
+  cursor?: Prisma.TradeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TradeScalarFieldEnum | Prisma.TradeScalarFieldEnum[]
+}
+
+/**
+ * User.tradesAccepted
+ */
+export type User$tradesAcceptedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Trade
+   */
+  select?: Prisma.TradeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Trade
+   */
+  omit?: Prisma.TradeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeInclude<ExtArgs> | null
+  where?: Prisma.TradeWhereInput
+  orderBy?: Prisma.TradeOrderByWithRelationInput | Prisma.TradeOrderByWithRelationInput[]
+  cursor?: Prisma.TradeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TradeScalarFieldEnum | Prisma.TradeScalarFieldEnum[]
 }
 
 /**

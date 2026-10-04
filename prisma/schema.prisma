@@ -29,6 +29,9 @@ model User {
   accounts     Account[]
   cards        UserCard[]
   transactions CoinTransaction[]
+
+  tradesCreated  Trade[] @relation("TradeCreator")
+  tradesAccepted Trade[] @relation("TradeAccepter")
 }
 
 model Session {
@@ -78,11 +81,15 @@ model Verification {
 model Card {
   id       String @id @default(cuid())
   name     String
+  bio      String @default("")
   imageUrl String
   rarity   Rarity
   series   String
 
   owners UserCard[]
+
+  tradesOffered Trade[] @relation("TradeOffered")
+  tradesWanted  Trade[] @relation("TradeWanted")
 }
 
 model UserCard {
@@ -93,6 +100,7 @@ model UserCard {
 
   user User @relation(fields: [userId], references: [id])
   card Card @relation(fields: [cardId], references: [id])
+  
 
   @@unique([userId, cardId])
 }
@@ -105,4 +113,39 @@ model CoinTransaction {
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
+}
+
+model CoinDrop {
+  id          String    @id @default(cuid())
+  messageId   String    @unique
+  channelId   String
+  amount      Int
+  createdBy   String?
+  claimedById String?
+  claimedAt   DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+enum TradeStatus {
+  OPEN
+  COMPLETED
+  CANCELLED
+}
+
+model Trade {
+  id            String      @id @default(cuid())
+  creatorId     String
+  offeredCardId String
+  wantedCardId  String
+  status        TradeStatus @default(OPEN)
+  acceptedById  String?
+  createdAt     DateTime    @default(now())
+  completedAt   DateTime?
+
+  creator     User  @relation("TradeCreator", fields: [creatorId], references: [id])
+  acceptedBy  User? @relation("TradeAccepter", fields: [acceptedById], references: [id])
+  offeredCard Card  @relation("TradeOffered", fields: [offeredCardId], references: [id])
+  wantedCard  Card  @relation("TradeWanted", fields: [wantedCardId], references: [id])
+
+  @@index([status])
 }

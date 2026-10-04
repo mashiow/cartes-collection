@@ -403,7 +403,9 @@ export const ModelName = {
   Verification: 'Verification',
   Card: 'Card',
   UserCard: 'UserCard',
-  CoinTransaction: 'CoinTransaction'
+  CoinTransaction: 'CoinTransaction',
+  CoinDrop: 'CoinDrop',
+  Trade: 'Trade'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -419,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction"
+    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -941,6 +943,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CoinDrop: {
+      payload: Prisma.$CoinDropPayload<ExtArgs>
+      fields: Prisma.CoinDropFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CoinDropFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CoinDropFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        findFirst: {
+          args: Prisma.CoinDropFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CoinDropFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        findMany: {
+          args: Prisma.CoinDropFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>[]
+        }
+        create: {
+          args: Prisma.CoinDropCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        createMany: {
+          args: Prisma.CoinDropCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CoinDropCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>[]
+        }
+        delete: {
+          args: Prisma.CoinDropDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        update: {
+          args: Prisma.CoinDropUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        deleteMany: {
+          args: Prisma.CoinDropDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CoinDropUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CoinDropUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>[]
+        }
+        upsert: {
+          args: Prisma.CoinDropUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoinDropPayload>
+        }
+        aggregate: {
+          args: Prisma.CoinDropAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCoinDrop>
+        }
+        groupBy: {
+          args: Prisma.CoinDropGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoinDropGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CoinDropCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoinDropCountAggregateOutputType> | number
+        }
+      }
+    }
+    Trade: {
+      payload: Prisma.$TradePayload<ExtArgs>
+      fields: Prisma.TradeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TradeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TradeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        findFirst: {
+          args: Prisma.TradeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TradeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        findMany: {
+          args: Prisma.TradeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>[]
+        }
+        create: {
+          args: Prisma.TradeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        createMany: {
+          args: Prisma.TradeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TradeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>[]
+        }
+        delete: {
+          args: Prisma.TradeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        update: {
+          args: Prisma.TradeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        deleteMany: {
+          args: Prisma.TradeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TradeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TradeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>[]
+        }
+        upsert: {
+          args: Prisma.TradeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TradePayload>
+        }
+        aggregate: {
+          args: Prisma.TradeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTrade>
+        }
+        groupBy: {
+          args: Prisma.TradeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TradeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TradeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TradeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1042,6 +1192,7 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const CardScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  bio: 'bio',
   imageUrl: 'imageUrl',
   rarity: 'rarity',
   series: 'series'
@@ -1069,6 +1220,34 @@ export const CoinTransactionScalarFieldEnum = {
 } as const
 
 export type CoinTransactionScalarFieldEnum = (typeof CoinTransactionScalarFieldEnum)[keyof typeof CoinTransactionScalarFieldEnum]
+
+
+export const CoinDropScalarFieldEnum = {
+  id: 'id',
+  messageId: 'messageId',
+  channelId: 'channelId',
+  amount: 'amount',
+  createdBy: 'createdBy',
+  claimedById: 'claimedById',
+  claimedAt: 'claimedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CoinDropScalarFieldEnum = (typeof CoinDropScalarFieldEnum)[keyof typeof CoinDropScalarFieldEnum]
+
+
+export const TradeScalarFieldEnum = {
+  id: 'id',
+  creatorId: 'creatorId',
+  offeredCardId: 'offeredCardId',
+  wantedCardId: 'wantedCardId',
+  status: 'status',
+  acceptedById: 'acceptedById',
+  createdAt: 'createdAt',
+  completedAt: 'completedAt'
+} as const
+
+export type TradeScalarFieldEnum = (typeof TradeScalarFieldEnum)[keyof typeof TradeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1161,6 +1340,20 @@ export type EnumRarityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Rarity[]'
  */
 export type ListEnumRarityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rarity[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TradeStatus'
+ */
+export type EnumTradeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TradeStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TradeStatus[]'
+ */
+export type ListEnumTradeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TradeStatus[]'>
     
 
 
@@ -1335,6 +1528,8 @@ export type GlobalOmitConfig = {
   card?: Prisma.CardOmit
   userCard?: Prisma.UserCardOmit
   coinTransaction?: Prisma.CoinTransactionOmit
+  coinDrop?: Prisma.CoinDropOmit
+  trade?: Prisma.TradeOmit
 }
 
 /* Types for Logging */
