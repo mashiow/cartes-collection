@@ -12,6 +12,12 @@ export default function Home() {
       >
         Voir la collection
       </Link>
+            <Link
+        href="/booster"
+        className="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500"
+      >
+        Ouvrir un booster
+      </Link>
     </main>
   );
 }
