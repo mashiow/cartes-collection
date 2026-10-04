@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+model User {
+  id         String   @id @default(cuid())
+  discordId  String   @unique
+  name       String
+  avatar     String?
+  coins      Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  cards        UserCard[]
+  transactions CoinTransaction[]
+}
+
+model Card {
+  id       String @id @default(cuid())
+  name     String
+  imageUrl String
+  rarity   Rarity
+  series   String
+
+  owners UserCard[]
+}
+
+model UserCard {
+  id       String @id @default(cuid())
+  userId   String
+  cardId   String
+  quantity Int    @default(1)
+
+  user User @relation(fields: [userId], references: [id])
+  card Card @relation(fields: [cardId], references: [id])
+
+  @@unique([userId, cardId])
+}
+
+model CoinTransaction {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int
+  reason    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
