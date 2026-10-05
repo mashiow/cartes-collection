@@ -1,27 +1,23 @@
 import Link from "next/link";
 import AuthButton from "@/components/AuthButton";
 
+const buttonClass =
+  "rounded bg-[#454545] px-6 py-3 text-xl text-white hover:bg-[#5a5a5a]";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6">
-      <h1 className="text-3xl font-bold">Bienvenue sur le jeu Anetsuki</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-6 text-center">
+      <h1 className="text-5xl font-bold md:text-7xl">
+        Bienvenue sur le jeu de carte Anetsuki
+      </h1>
       <AuthButton />
-      <Link
-        href="/collection"
-        className="rounded bg-[#454545] px-4 py-2 text-white hover:bg-[#5a5a5a]"
-      >
+      <Link href="/collection" className={buttonClass}>
         Voir la collection
       </Link>
-            <Link
-        href="/booster"
-        className="rounded bg-[#454545] px-4 py-2 text-white hover:bg-[#5a5a5a]"
-      >
+      <Link href="/booster" className={buttonClass}>
         Ouvrir un booster
       </Link>
-            <Link
-        href="/echanges"
-        className="rounded bg-[#454545] px-4 py-2 text-white hover:bg-[#5a5a5a]"
-      >
+      <Link href="/echanges" className={buttonClass}>
         Échanges
       </Link>
     </main>
