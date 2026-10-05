@@ -5,10 +5,10 @@ export const BOOSTER_PRICE = 100;
 type RarityName = "COMMON" | "RARE" | "EPIC" | "LEGENDARY";
 
 const RARITY_WEIGHTS: { rarity: RarityName; weight: number }[] = [
-  { rarity: "COMMON", weight: 70 },
-  { rarity: "RARE", weight: 20 },
-  { rarity: "EPIC", weight: 8 },
-  { rarity: "LEGENDARY", weight: 2 },
+  { rarity: "COMMON", weight: 700 },
+  { rarity: "RARE", weight: 220 },
+  { rarity: "EPIC", weight: 75 },
+  { rarity: "LEGENDARY", weight: 5 },
 ];
 
 export function rollRarity(): RarityName {

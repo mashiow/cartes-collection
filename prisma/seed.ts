@@ -101,7 +101,7 @@ const cards = [
   {
     name: "Seconde Dame",
     image: "secondedame.png",
-    rarity: "COMMON",
+    rarity: "RARE",
     series: "Série 1",
     bio: "Votre streameuse qui s’essaye à la musique... ouais bon oublions hyn, de toute façon le morceau a pu être entendu par peu de gens... légende ou vraie musique ?",
   },
