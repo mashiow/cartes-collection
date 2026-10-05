@@ -61,7 +61,7 @@ const cards = [
     image: "minox.png",
     rarity: "EPIC",
     series: "Série 1",
-    bio: "Minox alias le chouchou des nanas, p’tit musicien dans l’âme (bro copie juste luther), mais impossible de ne pas l’aimer !",
+    bio: "minox alias le chouchou des nanas (aussi celui d’ane ??), p’tit musicien dans l’âme (bro copie juste luther), mais impossible de ne pas l’aimer !",
   },
   {
     name: "Clestylva",
@@ -77,8 +77,62 @@ const cards = [
     series: "Série 1",
     bio: "Simplement le boss. (oui je me sauce car c’est moi je fait les cartes et alors ???)",
   },
-
-
+  {
+    name: "Ben de Twitch",
+    image: "bentwitch.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Toujours dans le chat, prêt à bannir Anelyaa de Twitch au moindre faux pas (Parrait-il a été créé par quelqu’un après son ban dans le chat...)",
+  },
+  {
+    name: "Figurine POP Mitsuri",
+    image: "popmitsuri.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Paraît-il que la figurine prend la poussière depuis l’achat, en vente sur Vinted soon (harceler Anelyaa pour la vendre)",
+  },
+  {
+    name: "Peluche Mitsuri",
+    image: "peluchemitsuri.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Alors ça ressemble plus à un monstre horrifique qu’à une peluche mais passons...",
+  },
+  {
+    name: "Seconde Dame",
+    image: "secondedame.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Votre streameuse qui s’essaye à la musique... ouais bon oublions hyn, de toute façon le morceau a pu être entendu par peu de gens... légende ou vraie musique ?",
+  },
+   {
+    name: "Valorant",
+    image: "valorant.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Le fameux Valorant, l’un des jeux principaux de la chaîne, mais bon vu le niveau d’Anelyaa pas besoin de s’éterniser dessus....",
+  },
+  {
+    name: "Le mariage Roblox",
+    image: "mariageroblox.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Anelyaa et Minox ont décidé de se marier... Mais n’ayant pas le budget, ils l’ont fait sur Roblox. Raison de plus de se moquer d’Anelyaa",
+  },
+  {
+    name: "Send biceps (please)",
+    image: "sendbiceps.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "L’image parle d’elle même, send biceps please.",
+  },
+  {
+    name: "Crash Twitch",
+    image: "crash.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Sachez que sur la chaîne, ça arrive si souvent et que maintenant ça nous choque même plus (Plus d’heure de crash, que de contenu)",
+  },
 
 
 
