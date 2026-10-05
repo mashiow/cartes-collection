@@ -11,6 +11,9 @@ const handwritten = Kalam({
 export const metadata: Metadata = {
   title: "Anetsuki - Jeu de cartes",
   description: "Collectionne, ouvre des boosters et échange tes cartes.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
