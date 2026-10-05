@@ -3,6 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import SecretMusic from "@/components/SecretMusic";
+
+// Une musique cachée par carte : "Nom exact de la carte": "fichier"
+const SECRET_MUSICS: Record<string, string> = {
+  "Seconde Dame": "/music/seconde-dame.mp3",
+};
 
 export const dynamic = "force-dynamic";
 
@@ -62,6 +68,8 @@ export default async function CardPage({
     );
   }
 
+  const musicSrc = SECRET_MUSICS[card.name];
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <Link href="/collection" className="mb-6 inline-block text-lg underline">
@@ -71,7 +79,7 @@ export default async function CardPage({
       <div className="flex flex-col gap-8 rounded-2xl bg-[#2b2b2b] p-6 text-white shadow-xl md:flex-row md:p-8">
         {/* Image entière sur le côté */}
         <div
-          className={`w-full shrink-0 rounded-xl border-4 bg-black/30 p-2 md:w-80 ${rarityFrame[card.rarity]}`}
+          className={`relative w-full shrink-0 rounded-xl border-4 bg-black/30 p-2 md:w-80 ${rarityFrame[card.rarity]}`}
         >
           <div className="flex aspect-[2/3] items-center justify-center">
             {card.imageUrl ? (
@@ -85,6 +93,8 @@ export default async function CardPage({
               <span className="text-7xl">🃏</span>
             )}
           </div>
+
+          {musicSrc && <SecretMusic src={musicSrc} />}
         </div>
 
         {/* Informations */}
