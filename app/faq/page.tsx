@@ -169,6 +169,19 @@ export default function FaqPage() {
             premier qui clique gagne !
           </p>
         </Section>
+
+        <Section title="Crédit">
+          <p>
+            Anetski est un concept original créé par Mashiow et Anelyaa.
+          </p>
+          <p>
+            - Développement (site & jeu) : Mashiow
+            - Design du site : Mashiow
+            - Design et rédaction des cartes : Mashiow et Anelyaa
+            - Game Design : Filounote et Mashiow
+          </p>
+          </Section>
+
       </div>
     </main>
   );
