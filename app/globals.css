@@ -46,6 +46,7 @@ html {
   color: #ffffff;
   border: 2px solid #f4a7c0;
   border-radius: 0.75rem;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
   text-decoration: none;
   cursor: pointer;
     transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -66,7 +67,9 @@ html {
 .btn-sakura:hover:not(:disabled) {
   background-color: #5a5a5a;
   transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(244, 167, 192, 0.55);
+  box-shadow:
+    0 0 18px rgba(244, 167, 192, 0.55),
+    0 10px 18px rgba(0, 0, 0, 0.55);
 }
 
 /* Les fleurs pulsent pendant le survol */
@@ -101,6 +104,10 @@ html {
   }
 }
 
+.btn-sakura-sm {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
 /* Respecte les personnes qui désactivent les animations sur leur appareil */
 @media (prefers-reduced-motion: reduce) {
   .btn-sakura,
@@ -108,4 +115,47 @@ html {
     transition: none;
     animation: none !important;
   }
+}
+/* Titre de l'accueil façon enseigne */
+.title-frame {
+  position: relative;
+  background-color: rgba(43, 43, 43, 0.92);
+  border: 3px solid #f4a7c0;
+  border-radius: 1.5rem;
+  outline: 2px solid rgba(244, 167, 192, 0.45);
+  outline-offset: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.title-logo {
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    0 0 18px rgba(244, 167, 192, 0.7),
+    3px 3px 0 #e58aa8;
+}
+
+.title-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.title-divider::before,
+.title-divider::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f4a7c0, transparent);
+}
+
+.title-divider span {
+  width: 28px;
+  height: 28px;
+  background: var(--sakura) center / contain no-repeat;
 }

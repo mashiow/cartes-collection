@@ -6,10 +6,17 @@ const buttonClass =
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-6 text-center">
-      <h1 className="text-5xl font-bold md:text-7xl">
-        Bienvenue sur l'expérience Anetsuki
-      </h1>
+    <main className="flex min-h-screen flex-col items-center justify-center gap-10 p-6 text-center">
+      <div className="title-frame px-6 py-8 md:px-14 md:py-10">
+        <p className="mb-3 text-xl text-gray-200 md:text-3xl">
+          Bienvenue sur le jeu de carte
+        </p>
+        <h1 className="title-logo text-6xl md:text-8xl">Anetsuki</h1>
+        <div className="title-divider">
+          <span />
+        </div>
+      </div>
+
       <AuthButton />
       <Link href="/collection" className={buttonClass}>
         Voir la collection
