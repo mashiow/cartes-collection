@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { sellPrice } from "@/lib/shop";
 
@@ -26,6 +27,30 @@ const rarityLabels: Record<string, string> = {
   LEGENDARY: "Légendaire",
 };
 
+// Durée minimale de la secousse (à garder égale à pack-shake dans globals.css)
+const SHAKE_MS = 1600;
+
+// Direction de chaque pétale lors de l'éclatement
+const BURST = Array.from({ length: 14 }, (_, i) => {
+  const angle = (i / 14) * Math.PI * 2;
+  const dist = 110 + (i % 3) * 35;
+  return {
+    dx: Math.round(Math.cos(angle) * dist),
+    dy: Math.round(Math.sin(angle) * dist),
+    r: (i % 2 === 0 ? 1 : -1) * (150 + i * 25),
+  };
+});
+
+function Pack({ idle = false }: { idle?: boolean }) {
+  return (
+    <div className={`booster-pack ${idle ? "booster-pack-idle" : ""}`}>
+      <div className="booster-pack-flower" />
+      <p className="booster-pack-label">ANETSUKI</p>
+      <p className="text-sm text-[#f4a7c0]">BOOSTER</p>
+    </div>
+  );
+}
+
 export default function BoosterOpener({
   coins,
   price,
@@ -37,32 +62,41 @@ export default function BoosterOpener({
 }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [opening, setOpening] = useState(false);
   const [selling, setSelling] = useState(false);
   const [card, setCard] = useState<Card | null>(null);
+  const [revealKey, setRevealKey] = useState(0);
   const [phase, setPhase] = useState<"revealed" | "kept" | "sold">("revealed");
   const [soldFor, setSoldFor] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   async function openBooster(free: boolean) {
     setLoading(true);
+    setOpening(true);
     setError(null);
     setCard(null);
     try {
-      const res = await fetch("/api/booster/open", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ free }),
-      });
+      // La requête et la secousse se font en même temps
+      const [res] = await Promise.all([
+        fetch("/api/booster/open", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ free }),
+        }),
+        new Promise((resolve) => setTimeout(resolve, SHAKE_MS)),
+      ]);
       const data = await res.json();
       if (!res.ok) {
         setError(data.error ?? "Erreur");
       } else {
         setCard(data.card);
         setPhase("revealed");
+        setRevealKey((k) => k + 1);
       }
     } catch {
       setError("Erreur réseau");
     } finally {
+      setOpening(false);
       setLoading(false);
       router.refresh();
     }
@@ -93,6 +127,8 @@ export default function BoosterOpener({
     }
   }
 
+  const big = card?.rarity === "EPIC" || card?.rarity === "LEGENDARY";
+
   return (
     <div className="flex flex-col items-center gap-6 p-2">
       <p className="text-2xl">
@@ -121,60 +157,89 @@ export default function BoosterOpener({
 
       {error && <p className="text-red-400">{error}</p>}
 
-      {card && (
-        <div className="flex flex-col items-center gap-4">
-          <div
-            className={`w-56 rounded-lg border-2 p-4 text-center text-white ${
-              rarityStyles[card.rarity]
-            }`}
-          >
-            <div className="mb-3 flex aspect-[2/3] items-center justify-center rounded bg-black/30 text-6xl">
-              {card.imageUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={card.imageUrl}
-                  alt={card.name}
-                  className="h-full w-full rounded object-cover"
-                />
-              ) : (
-                "🃏"
-              )}
+      {/* Scène : paquet au repos, paquet qui tremble, ou carte révélée */}
+      <div className="flex min-h-[22rem] flex-col items-center justify-center gap-4">
+        {opening && <Pack />}
+
+        {!opening && !card && <Pack idle />}
+
+        {!opening && card && (
+          <div className="flex flex-col items-center gap-4">
+            <div key={revealKey} className="relative">
+              <div className="reveal-flash" />
+              <div className="burst">
+                {BURST.map((p, i) => (
+                  <span
+                    key={i}
+                    className="burst-petal"
+                    style={
+                      {
+                        "--dx": p.dx,
+                        "--dy": p.dy,
+                        "--r": `${p.r}deg`,
+                        "--k": big ? 1.6 : 1,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
+              </div>
+
+              <div
+                className={`card-reveal glow-${card.rarity} w-56 rounded-lg border-2 p-4 text-center text-white ${
+                  rarityStyles[card.rarity]
+                }`}
+              >
+                <div className="mb-3 flex aspect-[2/3] items-center justify-center rounded bg-black/30 text-6xl">
+                  {card.imageUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={card.imageUrl}
+                      alt={card.name}
+                      className="h-full w-full rounded object-cover"
+                    />
+                  ) : (
+                    "🃏"
+                  )}
+                </div>
+                <p className="text-lg font-bold">{card.name}</p>
+                <p className="text-sm text-gray-300">
+                  {rarityLabels[card.rarity]}
+                </p>
+              </div>
             </div>
-            <p className="text-lg font-bold">{card.name}</p>
-            <p className="text-sm text-gray-300">{rarityLabels[card.rarity]}</p>
+
+            {phase === "revealed" && (
+              <div className="flex flex-wrap justify-center gap-4">
+                <button
+                  onClick={sellCard}
+                  disabled={selling}
+                  className="btn-sakura px-5 py-2"
+                >
+                  {selling
+                    ? "Vente..."
+                    : `Vente rapide (+${sellPrice(card.rarity)} 🪙)`}
+                </button>
+                <button
+                  onClick={() => setPhase("kept")}
+                  disabled={selling}
+                  className="btn-sakura px-5 py-2"
+                >
+                  Garder
+                </button>
+              </div>
+            )}
+
+            {phase === "kept" && (
+              <p className="text-green-400">Carte ajoutée à ta collection !</p>
+            )}
+            {phase === "sold" && (
+              <p className="text-yellow-300">
+                Carte vendue pour {soldFor} pièces.
+              </p>
+            )}
           </div>
-
-          {phase === "revealed" && (
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={sellCard}
-                disabled={selling}
-                className="btn-sakura px-5 py-2"
-              >
-                {selling
-                  ? "Vente..."
-                  : `Vente rapide (+${sellPrice(card.rarity)} 🪙)`}
-              </button>
-              <button
-                onClick={() => setPhase("kept")}
-                disabled={selling}
-                className="btn-sakura px-5 py-2"
-              >
-                Garder
-              </button>
-            </div>
-          )}
-
-          {phase === "kept" && (
-            <p className="text-green-400">Carte ajoutée à ta collection !</p>
-          )}
-          {phase === "sold" && (
-            <p className="text-yellow-300">
-              Carte vendue pour {soldFor} pièces.
-            </p>
-          )}
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
