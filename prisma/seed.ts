@@ -68,7 +68,7 @@ const cards = [
     image: "clestylva.png",
     rarity: "EPIC",
     series: "Série 1",
-    bio: "Arriver en cours de route, aussi clescouille que l’autre, mais bon on l’aime bien quand même",
+    bio: "Arriver en cours de route, aussi clescouille que l’autre, mais bon on l’aime bien quand même.",
   },
   {
     name: "Mashiow",
@@ -82,14 +82,14 @@ const cards = [
     image: "bentwitch.png",
     rarity: "RARE",
     series: "Série 1",
-    bio: "Toujours dans le chat, prêt à bannir Anelyaa de Twitch au moindre faux pas (Parrait-il a été créé par quelqu’un après son ban dans le chat...)",
+    bio: "Toujours dans le chat, prêt à bannir Anelyaa de Twitch au moindre faux pas. (Parrait-il a été créé par quelqu’un après son ban dans le chat...)",
   },
   {
     name: "Figurine POP Mitsuri",
     image: "popmitsuri.png",
     rarity: "COMMON",
     series: "Série 1",
-    bio: "Paraît-il que la figurine prend la poussière depuis l’achat, en vente sur Vinted soon (harceler Anelyaa pour la vendre)",
+    bio: "Paraît-il que la figurine prend la poussière depuis l’achat, en vente sur Vinted soon.. (harceler Anelyaa pour la vendre)",
   },
   {
     name: "Peluche Mitsuri",
@@ -117,7 +117,7 @@ const cards = [
     image: "mariageroblox.png",
     rarity: "COMMON",
     series: "Série 1",
-    bio: "Anelyaa et Minox ont décidé de se marier... Mais n’ayant pas le budget, ils l’ont fait sur Roblox. Raison de plus de se moquer d’Anelyaa",
+    bio: "Anelyaa et Minox ont décidé de se marier... Mais n’ayant pas le budget, ils l’ont fait sur Roblox. Raison de plus de se moquer d’Anelyaa.",
   },
   {
     name: "Send biceps (please)",
@@ -131,12 +131,71 @@ const cards = [
     image: "crash.png",
     rarity: "COMMON",
     series: "Série 1",
-    bio: "Sachez que sur la chaîne, ça arrive si souvent et que maintenant ça nous choque même plus (Plus d’heure de crash, que de contenu)",
+    bio: "Sachez que sur la chaîne, ça arrive si souvent et que maintenant ça nous choque même plus. (Plus d’heure de crash, que de contenu)",
   },
-
-
-
-
+  {
+    name: "Jacob Elordi",
+    image: "jacobelordi.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Le fameux Jacob... je t’ai jamais vu ni parlé mais j’en peux plus de toi, tout ça à cause d’Anelyaa qui parle H24 de toi mec.",
+  },
+  {
+    name: "Manolo",
+    image: "manolo.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Le fameux chien.",
+  },
+  {
+    name: "Squid Game Minecraft",
+    image: "squidgamemc.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Anelyaa au squid game, on pensait la voir mourir Premier jeu mais elle a survécu jusqu’à la corde à sauter quand même... déçu, impossible de la vanner du coup... (snif)",
+  },
+  {
+    name: "Anelyaa miam miam",
+    image: "anemiamiam.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "mhmmm cheeseburger please..",
+  },
+  {
+    name: "Anelyoo",
+    image: "anelyoo.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Fini Anelyaa, laissez place à Anelyoo, son remplaçant masculin.",
+  },
+  {
+    name: "Anelyaa patiente",
+    image: "anelyaapatiente.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "On ne sait pas trop ce qu'elle attend, mais je crois que...",
+  },
+  {
+    name: "Tuto makeup",
+    image: "tutomakeup.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Si tu veux devenir aussi horrible que son maquillage, tu es sur la bonne piste. (surtout si tu veux des grosses lèvres)",
+  },
+  {
+    name: "Grystelite",
+    image: "grystelite.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Anciennement un tigre, l’un des emblèmes de la chaîne, notre modérateur national qui déteste tout autant Anelyaa que moi.",
+  },
+  {
+    name: "Pépère",
+    image: "pepere.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Deuxième garde du corps d’Anelyaa (toujours pas volontaire mais forcé). Il est là une fois par mois, mais sans lui, le chat ne serait pas aussi drôle !",
+  },
 
 
 
