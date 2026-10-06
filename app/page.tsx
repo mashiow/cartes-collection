@@ -20,7 +20,9 @@ const menu = [
   { href: "/booster", label: "Ouvrir un booster" },
   { href: "/boutique", label: "Boutique" },
   { href: "/echanges", label: "Échanges" },
+  { href: "/jeux", label: "Mini-jeux" },
   { href: "/faq", label: "FAQ" },
+
 ];
 
 export default async function Home() {

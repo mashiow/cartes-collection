@@ -67,3 +67,8 @@ export type Trade = Prisma.TradeModel
  * 
  */
 export type News = Prisma.NewsModel
+/**
+ * Model QuizRound
+ * 
+ */
+export type QuizRound = Prisma.QuizRoundModel

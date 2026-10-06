@@ -36,6 +36,9 @@ model User {
   lastDailyDate  String?
   lastWeeklyDate String?
   freeBoosters   Int     @default(0)
+
+  gamesDate   String?
+  gamesPlayed Int     @default(0)
 }
 
 model Session {
@@ -159,4 +162,15 @@ model News {
   title     String
   body      String
   createdAt DateTime @default(now())
+}
+model QuizRound {
+  id         String    @id @default(cuid())
+  userId     String
+  cardId     String
+  optionIds  String[]
+  chosenId   String?
+  answeredAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([userId, answeredAt])
 }

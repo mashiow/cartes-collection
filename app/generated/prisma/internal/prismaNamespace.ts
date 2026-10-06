@@ -406,7 +406,8 @@ export const ModelName = {
   CoinTransaction: 'CoinTransaction',
   CoinDrop: 'CoinDrop',
   Trade: 'Trade',
-  News: 'News'
+  News: 'News',
+  QuizRound: 'QuizRound'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news"
+    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news" | "quizRound"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1166,6 +1167,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    QuizRound: {
+      payload: Prisma.$QuizRoundPayload<ExtArgs>
+      fields: Prisma.QuizRoundFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuizRoundFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuizRoundFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        findFirst: {
+          args: Prisma.QuizRoundFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuizRoundFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        findMany: {
+          args: Prisma.QuizRoundFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>[]
+        }
+        create: {
+          args: Prisma.QuizRoundCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        createMany: {
+          args: Prisma.QuizRoundCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QuizRoundCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>[]
+        }
+        delete: {
+          args: Prisma.QuizRoundDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        update: {
+          args: Prisma.QuizRoundUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuizRoundDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuizRoundUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QuizRoundUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>[]
+        }
+        upsert: {
+          args: Prisma.QuizRoundUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuizRoundPayload>
+        }
+        aggregate: {
+          args: Prisma.QuizRoundAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuizRound>
+        }
+        groupBy: {
+          args: Prisma.QuizRoundGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuizRoundGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuizRoundCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuizRoundCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1216,7 +1291,9 @@ export const UserScalarFieldEnum = {
   coins: 'coins',
   lastDailyDate: 'lastDailyDate',
   lastWeeklyDate: 'lastWeeklyDate',
-  freeBoosters: 'freeBoosters'
+  freeBoosters: 'freeBoosters',
+  gamesDate: 'gamesDate',
+  gamesPlayed: 'gamesPlayed'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1336,6 +1413,19 @@ export const NewsScalarFieldEnum = {
 } as const
 
 export type NewsScalarFieldEnum = (typeof NewsScalarFieldEnum)[keyof typeof NewsScalarFieldEnum]
+
+
+export const QuizRoundScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  cardId: 'cardId',
+  optionIds: 'optionIds',
+  chosenId: 'chosenId',
+  answeredAt: 'answeredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type QuizRoundScalarFieldEnum = (typeof QuizRoundScalarFieldEnum)[keyof typeof QuizRoundScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1619,6 +1709,7 @@ export type GlobalOmitConfig = {
   coinDrop?: Prisma.CoinDropOmit
   trade?: Prisma.TradeOmit
   news?: Prisma.NewsOmit
+  quizRound?: Prisma.QuizRoundOmit
 }
 
 /* Types for Logging */

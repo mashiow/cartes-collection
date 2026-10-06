@@ -29,11 +29,13 @@ export type AggregateUser = {
 export type UserAvgAggregateOutputType = {
   coins: number | null
   freeBoosters: number | null
+  gamesPlayed: number | null
 }
 
 export type UserSumAggregateOutputType = {
   coins: number | null
   freeBoosters: number | null
+  gamesPlayed: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -48,6 +50,8 @@ export type UserMinAggregateOutputType = {
   lastDailyDate: string | null
   lastWeeklyDate: string | null
   freeBoosters: number | null
+  gamesDate: string | null
+  gamesPlayed: number | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -62,6 +66,8 @@ export type UserMaxAggregateOutputType = {
   lastDailyDate: string | null
   lastWeeklyDate: string | null
   freeBoosters: number | null
+  gamesDate: string | null
+  gamesPlayed: number | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -76,6 +82,8 @@ export type UserCountAggregateOutputType = {
   lastDailyDate: number
   lastWeeklyDate: number
   freeBoosters: number
+  gamesDate: number
+  gamesPlayed: number
   _all: number
 }
 
@@ -83,11 +91,13 @@ export type UserCountAggregateOutputType = {
 export type UserAvgAggregateInputType = {
   coins?: true
   freeBoosters?: true
+  gamesPlayed?: true
 }
 
 export type UserSumAggregateInputType = {
   coins?: true
   freeBoosters?: true
+  gamesPlayed?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -102,6 +112,8 @@ export type UserMinAggregateInputType = {
   lastDailyDate?: true
   lastWeeklyDate?: true
   freeBoosters?: true
+  gamesDate?: true
+  gamesPlayed?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -116,6 +128,8 @@ export type UserMaxAggregateInputType = {
   lastDailyDate?: true
   lastWeeklyDate?: true
   freeBoosters?: true
+  gamesDate?: true
+  gamesPlayed?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -130,6 +144,8 @@ export type UserCountAggregateInputType = {
   lastDailyDate?: true
   lastWeeklyDate?: true
   freeBoosters?: true
+  gamesDate?: true
+  gamesPlayed?: true
   _all?: true
 }
 
@@ -231,6 +247,8 @@ export type UserGroupByOutputType = {
   lastDailyDate: string | null
   lastWeeklyDate: string | null
   freeBoosters: number
+  gamesDate: string | null
+  gamesPlayed: number
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -268,6 +286,8 @@ export type UserWhereInput = {
   lastDailyDate?: Prisma.StringNullableFilter<"User"> | string | null
   lastWeeklyDate?: Prisma.StringNullableFilter<"User"> | string | null
   freeBoosters?: Prisma.IntFilter<"User"> | number
+  gamesDate?: Prisma.StringNullableFilter<"User"> | string | null
+  gamesPlayed?: Prisma.IntFilter<"User"> | number
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -288,6 +308,8 @@ export type UserOrderByWithRelationInput = {
   lastDailyDate?: Prisma.SortOrderInput | Prisma.SortOrder
   lastWeeklyDate?: Prisma.SortOrderInput | Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   cards?: Prisma.UserCardOrderByRelationAggregateInput
@@ -311,6 +333,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   lastDailyDate?: Prisma.StringNullableFilter<"User"> | string | null
   lastWeeklyDate?: Prisma.StringNullableFilter<"User"> | string | null
   freeBoosters?: Prisma.IntFilter<"User"> | number
+  gamesDate?: Prisma.StringNullableFilter<"User"> | string | null
+  gamesPlayed?: Prisma.IntFilter<"User"> | number
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -331,6 +355,8 @@ export type UserOrderByWithAggregationInput = {
   lastDailyDate?: Prisma.SortOrderInput | Prisma.SortOrder
   lastWeeklyDate?: Prisma.SortOrderInput | Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -353,6 +379,8 @@ export type UserScalarWhereWithAggregatesInput = {
   lastDailyDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   lastWeeklyDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   freeBoosters?: Prisma.IntWithAggregatesFilter<"User"> | number
+  gamesDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  gamesPlayed?: Prisma.IntWithAggregatesFilter<"User"> | number
 }
 
 export type UserCreateInput = {
@@ -367,6 +395,8 @@ export type UserCreateInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -387,6 +417,8 @@ export type UserUncheckedCreateInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -407,6 +439,8 @@ export type UserUpdateInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -427,6 +461,8 @@ export type UserUncheckedUpdateInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -447,6 +483,8 @@ export type UserCreateManyInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
 }
 
 export type UserUpdateManyMutationInput = {
@@ -461,6 +499,8 @@ export type UserUpdateManyMutationInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -475,6 +515,8 @@ export type UserUncheckedUpdateManyInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -489,11 +531,14 @@ export type UserCountOrderByAggregateInput = {
   lastDailyDate?: Prisma.SortOrder
   lastWeeklyDate?: Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesDate?: Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   coins?: Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -508,6 +553,8 @@ export type UserMaxOrderByAggregateInput = {
   lastDailyDate?: Prisma.SortOrder
   lastWeeklyDate?: Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesDate?: Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -522,11 +569,14 @@ export type UserMinOrderByAggregateInput = {
   lastDailyDate?: Prisma.SortOrder
   lastWeeklyDate?: Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesDate?: Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   coins?: Prisma.SortOrder
   freeBoosters?: Prisma.SortOrder
+  gamesPlayed?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -661,6 +711,8 @@ export type UserCreateWithoutSessionsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -680,6 +732,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -715,6 +769,8 @@ export type UserUpdateWithoutSessionsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -734,6 +790,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -753,6 +811,8 @@ export type UserCreateWithoutAccountsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -772,6 +832,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -807,6 +869,8 @@ export type UserUpdateWithoutAccountsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -826,6 +890,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -845,6 +911,8 @@ export type UserCreateWithoutCardsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -864,6 +932,8 @@ export type UserUncheckedCreateWithoutCardsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -899,6 +969,8 @@ export type UserUpdateWithoutCardsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -918,6 +990,8 @@ export type UserUncheckedUpdateWithoutCardsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -937,6 +1011,8 @@ export type UserCreateWithoutTransactionsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -956,6 +1032,8 @@ export type UserUncheckedCreateWithoutTransactionsInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -991,6 +1069,8 @@ export type UserUpdateWithoutTransactionsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1010,6 +1090,8 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1029,6 +1111,8 @@ export type UserCreateWithoutTradesCreatedInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -1048,6 +1132,8 @@ export type UserUncheckedCreateWithoutTradesCreatedInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -1072,6 +1158,8 @@ export type UserCreateWithoutTradesAcceptedInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -1091,6 +1179,8 @@ export type UserUncheckedCreateWithoutTradesAcceptedInput = {
   lastDailyDate?: string | null
   lastWeeklyDate?: string | null
   freeBoosters?: number
+  gamesDate?: string | null
+  gamesPlayed?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -1126,6 +1216,8 @@ export type UserUpdateWithoutTradesCreatedInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1145,6 +1237,8 @@ export type UserUncheckedUpdateWithoutTradesCreatedInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1175,6 +1269,8 @@ export type UserUpdateWithoutTradesAcceptedInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1194,6 +1290,8 @@ export type UserUncheckedUpdateWithoutTradesAcceptedInput = {
   lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
+  gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1289,6 +1387,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   lastDailyDate?: boolean
   lastWeeklyDate?: boolean
   freeBoosters?: boolean
+  gamesDate?: boolean
+  gamesPlayed?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   cards?: boolean | Prisma.User$cardsArgs<ExtArgs>
@@ -1310,6 +1410,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastDailyDate?: boolean
   lastWeeklyDate?: boolean
   freeBoosters?: boolean
+  gamesDate?: boolean
+  gamesPlayed?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1324,6 +1426,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastDailyDate?: boolean
   lastWeeklyDate?: boolean
   freeBoosters?: boolean
+  gamesDate?: boolean
+  gamesPlayed?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1338,9 +1442,11 @@ export type UserSelectScalar = {
   lastDailyDate?: boolean
   lastWeeklyDate?: boolean
   freeBoosters?: boolean
+  gamesDate?: boolean
+  gamesPlayed?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins" | "lastDailyDate" | "lastWeeklyDate" | "freeBoosters", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins" | "lastDailyDate" | "lastWeeklyDate" | "freeBoosters" | "gamesDate" | "gamesPlayed", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -1375,6 +1481,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     lastDailyDate: string | null
     lastWeeklyDate: string | null
     freeBoosters: number
+    gamesDate: string | null
+    gamesPlayed: number
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1815,6 +1923,8 @@ export interface UserFieldRefs {
   readonly lastDailyDate: Prisma.FieldRef<"User", 'String'>
   readonly lastWeeklyDate: Prisma.FieldRef<"User", 'String'>
   readonly freeBoosters: Prisma.FieldRef<"User", 'Int'>
+  readonly gamesDate: Prisma.FieldRef<"User", 'String'>
+  readonly gamesPlayed: Prisma.FieldRef<"User", 'Int'>
 }
     
 
