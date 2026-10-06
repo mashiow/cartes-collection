@@ -4,7 +4,7 @@ export const BOOSTER_PRICE = 100;
 
 type RarityName = "COMMON" | "RARE" | "EPIC" | "LEGENDARY";
 
-const RARITY_WEIGHTS: { rarity: RarityName; weight: number }[] = [
+export const RARITY_WEIGHTS: { rarity: RarityName; weight: number }[] = [
   { rarity: "COMMON", weight: 700 },
   { rarity: "RARE", weight: 220 },
   { rarity: "EPIC", weight: 75 },

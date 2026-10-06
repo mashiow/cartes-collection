@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-6 text-center">
       <h1 className="text-5xl font-bold md:text-7xl">
-        Bienvenue sur le jeu de carte Anetsuki
+        Bienvenue sur l'expérience Anetsuki
       </h1>
       <AuthButton />
       <Link href="/collection" className={buttonClass}>
@@ -19,6 +19,9 @@ export default function Home() {
       </Link>
       <Link href="/echanges" className={buttonClass}>
         Échanges
+      </Link>
+      <Link href="/faq" className={buttonClass}>
+        FAQ
       </Link>
     </main>
   );

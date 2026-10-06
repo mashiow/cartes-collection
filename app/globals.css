@@ -48,7 +48,7 @@ html {
   border-radius: 0.75rem;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 /* Les 4 fleurs dans les coins */
@@ -65,7 +65,18 @@ html {
 
 .btn-sakura:hover:not(:disabled) {
   background-color: #5a5a5a;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(244, 167, 192, 0.55);
+}
+
+/* Les fleurs pulsent pendant le survol */
+.btn-sakura:hover:not(:disabled)::before {
+  animation: sakura-pulse 0.9s ease-in-out infinite;
+}
+
+/* Petit effet d'enfoncement au clic */
+.btn-sakura:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
 .btn-sakura:disabled {
@@ -79,4 +90,22 @@ html {
   padding: 0.35rem 1rem;
   font-size: 1rem;
   border-radius: 0.6rem;
+}
+@keyframes sakura-pulse {
+  0%,
+  100% {
+    background-size: var(--flower) var(--flower);
+  }
+  50% {
+    background-size: calc(var(--flower) * 1.3) calc(var(--flower) * 1.3);
+  }
+}
+
+/* Respecte les personnes qui désactivent les animations sur leur appareil */
+@media (prefers-reduced-motion: reduce) {
+  .btn-sakura,
+  .btn-sakura::before {
+    transition: none;
+    animation: none !important;
+  }
 }
