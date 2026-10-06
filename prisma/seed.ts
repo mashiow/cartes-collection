@@ -103,7 +103,7 @@ const cards = [
     image: "secondedame.png",
     rarity: "RARE",
     series: "Série 1",
-    bio: "Votre streameuse qui s’essaye à la musique... ouais bon oublions hyn, de toute façon le morceau a pu être entendu par peu de gens... légende ou vraie musique ? (INDICE : sur la page, il y a un petit bouton caché, cherche, tu auras une surprise !",
+    bio: "Votre streameuse qui s’essaye à la musique... ouais bon oublions hyn, de toute façon le morceau a pu être entendu par peu de gens... légende ou vraie musique ? (INDICE : sur la page, il y a un petit bouton caché, cherche, tu auras une surprise !)",
   },
    {
     name: "Valorant",

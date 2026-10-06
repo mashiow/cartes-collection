@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { sellPrice } from "@/lib/shop";
@@ -26,6 +26,28 @@ const rarityLabels: Record<string, string> = {
   EPIC: "Épique",
   LEGENDARY: "Légendaire",
 };
+
+// Les sons : un pour la secousse, un par rareté
+const SOUNDS: Record<string, string> = {
+  shake: "/sounds/pack-shake.mp3",
+  COMMON: "/sounds/reveal-common.mp3",
+  RARE: "/sounds/reveal-rare.mp3",
+  EPIC: "/sounds/reveal-epic.mp3",
+  LEGENDARY: "/sounds/reveal-legendary.mp3",
+};
+
+const MUTE_KEY = "anetsuki-sound-muted";
+
+function playSound(src: string, volume: number): HTMLAudioElement | null {
+  try {
+    const audio = new Audio(src);
+    audio.volume = volume;
+    audio.play().catch(() => {});
+    return audio;
+  } catch {
+    return null;
+  }
+}
 
 // Durée minimale de la secousse (à garder égale à pack-shake dans globals.css)
 const SHAKE_MS = 1600;
@@ -61,6 +83,8 @@ export default function BoosterOpener({
   freeBoosters: number;
 }) {
   const router = useRouter();
+  const shakeAudio = useRef<HTMLAudioElement | null>(null);
+  const [muted, setMuted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [opening, setOpening] = useState(false);
   const [selling, setSelling] = useState(false);
@@ -70,11 +94,33 @@ export default function BoosterOpener({
   const [soldFor, setSoldFor] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
+  // On retrouve le choix "son coupé" fait lors d'une visite précédente
+  useEffect(() => {
+    try {
+      setMuted(localStorage.getItem(MUTE_KEY) === "1");
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  function toggleMute() {
+    const next = !muted;
+    setMuted(next);
+    try {
+      localStorage.setItem(MUTE_KEY, next ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }
+
   async function openBooster(free: boolean) {
     setLoading(true);
     setOpening(true);
     setError(null);
     setCard(null);
+
+    if (!muted) shakeAudio.current = playSound(SOUNDS.shake, 0.8);
+
     try {
       // La requête et la secousse se font en même temps
       const [res] = await Promise.all([
@@ -85,6 +131,9 @@ export default function BoosterOpener({
         }),
         new Promise((resolve) => setTimeout(resolve, SHAKE_MS)),
       ]);
+
+      shakeAudio.current?.pause();
+
       const data = await res.json();
       if (!res.ok) {
         setError(data.error ?? "Erreur");
@@ -92,8 +141,12 @@ export default function BoosterOpener({
         setCard(data.card);
         setPhase("revealed");
         setRevealKey((k) => k + 1);
+        if (!muted) {
+          playSound(SOUNDS[data.card.rarity] ?? SOUNDS.COMMON, 0.7);
+        }
       }
     } catch {
+      shakeAudio.current?.pause();
       setError("Erreur réseau");
     } finally {
       setOpening(false);
@@ -131,9 +184,18 @@ export default function BoosterOpener({
 
   return (
     <div className="flex flex-col items-center gap-6 p-2">
-      <p className="text-2xl">
-        Ta monnaie : <strong>{coins}</strong> 🪙
-      </p>
+      <div className="flex flex-wrap items-center justify-center gap-6">
+        <p className="text-2xl">
+          Ta monnaie : <strong>{coins}</strong> 🪙
+        </p>
+        <button
+          onClick={toggleMute}
+          className="btn-sakura btn-sakura-sm"
+          aria-label={muted ? "Activer le son" : "Couper le son"}
+        >
+          {muted ? "🔇 Son coupé" : "🔊 Son activé"}
+        </button>
+      </div>
 
       <div className="flex flex-wrap items-center justify-center gap-6">
         <button
