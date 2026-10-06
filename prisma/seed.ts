@@ -196,12 +196,48 @@ const cards = [
     series: "Série 1",
     bio: "Deuxième garde du corps d’Anelyaa (toujours pas volontaire mais forcé). Il est là une fois par mois, mais sans lui, le chat ne serait pas aussi drôle !",
   },
-
-
-
-
-
-
+  {
+    name: "Anelyaa Cars",
+    image: "anelyaacars.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "VROUMMMM VROUMMMM Laissez place à la nouvelle carsette",
+  },
+  {
+    name: "Ekyyxx",
+    image: "ekyyxx.png",
+    rarity: "EPIC",
+    series: "Série 1",
+    bio: "Le bras droit d’Anelyaa, mais on ne la connaît pas trop, le seul truc que je sais, c’est qu’elle fait de bons romans. Askip...",
+  },
+  {
+    name: "Anelyaa vampire",
+    image: "anelyaavampire.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Déjà, d'un, elle fait peur sur celle-ci et de deux, cachez vos pieds, elle croque dedans.",
+  },
+  {
+    name: "Pyjama Hello Kitty",
+    image: "pyjamahello.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "On l’a plus vu avec ce bas-là que des vêtements banals.",
+  },
+  {
+    name: "Chips Oignon Caramel",
+    image: "chipsoignoncaramelisé.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Non vous ne rêvez pas, y’a bien écrit oignons caramelisés et vinaigre balsamique.",
+  },
+  {
+    name: "Anelyaa’costo",
+    image: "anelyaacosto.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Les gros biscotos de anelyaa en sah ?",
+  },
 
 ] as const;
 
