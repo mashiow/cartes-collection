@@ -75,7 +75,7 @@ const cards = [
     image: "mashiow.png",
     rarity: "EPIC",
     series: "Série 1",
-    bio: "Simplement le boss. (oui je me sauce car c’est moi je fait les cartes et alors ???)",
+    bio: "Simplement le boss. (oui je me sauce car c’est moi je fais les cartes et alors ???)",
   },
   {
     name: "Ben de Twitch",
