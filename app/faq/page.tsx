@@ -172,7 +172,7 @@ export default function FaqPage() {
 
         <Section title="Crédit">
           <p>
-            Anetski est un concept original créé par Mashiow et Anelyaa.
+            Anetsuki est un concept original créé par Mashiow et Anelyaa.
           </p>
           <p>
             - Développement (site & jeu) : Mashiow
