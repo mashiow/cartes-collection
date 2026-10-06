@@ -63,7 +63,7 @@ export default function BoosterOpener({
       <button
         onClick={openBooster}
         disabled={loading || coins < price}
-        className="rounded bg-[#454545] px-6 py-3 text-lg text-white hover:bg-[#5a5a5a] disabled:cursor-not-allowed disabled:opacity-50"
+        className="btn-sakura rounded bg-[#454545] px-6 py-3 text-lg text-white hover:bg-[#5a5a5a] disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? "Ouverture..." : `Ouvrir un booster (${price} 🪙)`}
       </button>

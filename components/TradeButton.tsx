@@ -40,7 +40,7 @@ export default function TradeButton({
       <button
         onClick={run}
         disabled={loading || disabled}
-        className={`rounded px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+                className={`btn-sakura rounded px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       >
         {loading ? "..." : label}
       </button>

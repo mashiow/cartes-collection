@@ -2,7 +2,7 @@ import Link from "next/link";
 import AuthButton from "@/components/AuthButton";
 
 const buttonClass =
-  "rounded bg-[#454545] px-6 py-3 text-xl text-white hover:bg-[#5a5a5a]";
+  "btn-sakura rounded bg-[#454545] px-6 py-3 text-xl text-white hover:bg-[#5a5a5a]";
 
 export default function Home() {
   return (

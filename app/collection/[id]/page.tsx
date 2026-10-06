@@ -60,7 +60,7 @@ export default async function CardPage({
           <p className="text-gray-300">
             Ouvre des boosters pour débloquer cette carte.
           </p>
-          <Link href="/collection" className="underline">
+          <Link href="/collection" className="btn-sakura btn-sakura-sm">
             Retour à la collection
           </Link>
         </div>
@@ -72,7 +72,7 @@ export default async function CardPage({
 
   return (
     <main className="mx-auto max-w-4xl p-6">
-      <Link href="/collection" className="mb-6 inline-block text-lg underline">
+      <Link href="/collection" className="btn-sakura btn-sakura-sm mb-6">
         ← Retour à la collection
       </Link>
 

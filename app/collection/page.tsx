@@ -35,7 +35,7 @@ export default async function CollectionPage() {
     <main className="mx-auto max-w-5xl p-6">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Collection</h1>
-        <Link href="/" className="underline">
+        <Link href="/" className="btn-sakura btn-sakura-sm">
           Accueil
         </Link>
       </div>

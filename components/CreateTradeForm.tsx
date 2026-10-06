@@ -204,7 +204,7 @@ export default function CreateTradeForm({
       <button
         onClick={submit}
         disabled={loading || !offered || !wanted}
-        className="rounded bg-[#454545] px-4 py-3 text-lg text-white hover:bg-[#5a5a5a] disabled:cursor-not-allowed disabled:opacity-50"
+        className="btn-sakura rounded bg-[#454545] px-4 py-3 text-lg text-white hover:bg-[#5a5a5a] disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? "Publication..." : "Publier l'offre"}
       </button>
