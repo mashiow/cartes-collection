@@ -176,11 +176,17 @@ export default function FaqPage() {
           </p>
           <p>
             - Développement (site & jeu) : Mashiow
+            </p>
+            <p>
             - Design du site : Mashiow
+            </p>
+            <p>
             - Design et rédaction des cartes : Mashiow et Anelyaa
+            </p>
+            <p>
             - Game Design : Filounote et Mashiow
-          </p>
-          </Section>
+            </p>
+            </Section>
 
       </div>
     </main>
