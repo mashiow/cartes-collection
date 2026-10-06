@@ -159,3 +159,179 @@ html {
   height: 28px;
   background: var(--sakura) center / contain no-repeat;
 }
+
+/* Panneaux façon sakura */
+.panel-sakura {
+  --flower: 26px;
+  position: relative;
+  background-color: rgba(43, 43, 43, 0.93);
+  color: #ffffff;
+  border: 2px solid #f4a7c0;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+/* Une fleur dans chacun des deux coins du haut */
+.panel-sakura::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--flower) / -2);
+  pointer-events: none;
+  background-image: var(--sakura), var(--sakura);
+  background-repeat: no-repeat;
+  background-size: var(--flower) var(--flower);
+  background-position: left top, right top;
+}
+
+.panel-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid rgba(244, 167, 192, 0.5);
+}
+
+/* ---------- Intro de l'accueil ---------- */
+
+/* Délai avant l'apparition des éléments (après l'écran de chargement) */
+.intro-play {
+  --intro-base: 2s;
+}
+.intro-skip {
+  --intro-base: 0s;
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  color: #ffffff;
+  background: radial-gradient(circle at center, #3a2430 0%, #1a1115 100%);
+  animation: intro-out 0.7s ease 1.9s forwards;
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.intro-flower {
+  width: 90px;
+  height: 90px;
+  background: var(--sakura) center / contain no-repeat;
+  filter: drop-shadow(0 0 12px rgba(244, 167, 192, 0.6));
+  animation: intro-spin 2.4s linear infinite;
+}
+
+@keyframes intro-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.intro-bar {
+  width: 220px;
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 167, 192, 0.5);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.intro-bar::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f4a7c0, #e58aa8);
+  transform-origin: left;
+  animation: intro-fill 1.8s ease-in-out forwards;
+}
+
+@keyframes intro-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Pétales qui tombent derrière le chargement */
+.intro-petal {
+  position: absolute;
+  top: -40px;
+  left: var(--x);
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+  background: var(--sakura) center / contain no-repeat;
+  animation: petal-fall 3.2s linear infinite;
+  animation-delay: var(--d);
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(40px, 55vh) rotate(180deg);
+  }
+  100% {
+    transform: translate(-20px, 110vh) rotate(360deg);
+  }
+}
+
+/* Apparition progressive : le numéro --i décide de l'ordre */
+.reveal {
+  animation: reveal-up 0.6s ease-out backwards;
+  animation-delay: calc(var(--intro-base, 0s) + var(--i, 0) * 0.18s);
+}
+
+.reveal-left {
+  animation-name: reveal-left;
+}
+
+.reveal-right {
+  animation-name: reveal-right;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    display: none;
+  }
+  .reveal {
+    animation: none;
+  }
+}

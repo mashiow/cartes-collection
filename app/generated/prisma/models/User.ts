@@ -28,10 +28,12 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   coins: number | null
+  freeBoosters: number | null
 }
 
 export type UserSumAggregateOutputType = {
   coins: number | null
+  freeBoosters: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -43,6 +45,9 @@ export type UserMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   coins: number | null
+  lastDailyDate: string | null
+  lastWeeklyDate: string | null
+  freeBoosters: number | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -54,6 +59,9 @@ export type UserMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   coins: number | null
+  lastDailyDate: string | null
+  lastWeeklyDate: string | null
+  freeBoosters: number | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -65,16 +73,21 @@ export type UserCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   coins: number
+  lastDailyDate: number
+  lastWeeklyDate: number
+  freeBoosters: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   coins?: true
+  freeBoosters?: true
 }
 
 export type UserSumAggregateInputType = {
   coins?: true
+  freeBoosters?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -86,6 +99,9 @@ export type UserMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   coins?: true
+  lastDailyDate?: true
+  lastWeeklyDate?: true
+  freeBoosters?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -97,6 +113,9 @@ export type UserMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   coins?: true
+  lastDailyDate?: true
+  lastWeeklyDate?: true
+  freeBoosters?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -108,6 +127,9 @@ export type UserCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   coins?: true
+  lastDailyDate?: true
+  lastWeeklyDate?: true
+  freeBoosters?: true
   _all?: true
 }
 
@@ -206,6 +228,9 @@ export type UserGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   coins: number
+  lastDailyDate: string | null
+  lastWeeklyDate: string | null
+  freeBoosters: number
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -240,6 +265,9 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   coins?: Prisma.IntFilter<"User"> | number
+  lastDailyDate?: Prisma.StringNullableFilter<"User"> | string | null
+  lastWeeklyDate?: Prisma.StringNullableFilter<"User"> | string | null
+  freeBoosters?: Prisma.IntFilter<"User"> | number
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -257,6 +285,9 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coins?: Prisma.SortOrder
+  lastDailyDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastWeeklyDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   cards?: Prisma.UserCardOrderByRelationAggregateInput
@@ -277,6 +308,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   coins?: Prisma.IntFilter<"User"> | number
+  lastDailyDate?: Prisma.StringNullableFilter<"User"> | string | null
+  lastWeeklyDate?: Prisma.StringNullableFilter<"User"> | string | null
+  freeBoosters?: Prisma.IntFilter<"User"> | number
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -294,6 +328,9 @@ export type UserOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coins?: Prisma.SortOrder
+  lastDailyDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastWeeklyDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -313,6 +350,9 @@ export type UserScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   coins?: Prisma.IntWithAggregatesFilter<"User"> | number
+  lastDailyDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  lastWeeklyDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  freeBoosters?: Prisma.IntWithAggregatesFilter<"User"> | number
 }
 
 export type UserCreateInput = {
@@ -324,6 +364,9 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -341,6 +384,9 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -358,6 +404,9 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -375,6 +424,9 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -392,6 +444,9 @@ export type UserCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
 }
 
 export type UserUpdateManyMutationInput = {
@@ -403,6 +458,9 @@ export type UserUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -414,6 +472,9 @@ export type UserUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -425,10 +486,14 @@ export type UserCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coins?: Prisma.SortOrder
+  lastDailyDate?: Prisma.SortOrder
+  lastWeeklyDate?: Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   coins?: Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -440,6 +505,9 @@ export type UserMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coins?: Prisma.SortOrder
+  lastDailyDate?: Prisma.SortOrder
+  lastWeeklyDate?: Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -451,10 +519,14 @@ export type UserMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coins?: Prisma.SortOrder
+  lastDailyDate?: Prisma.SortOrder
+  lastWeeklyDate?: Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   coins?: Prisma.SortOrder
+  freeBoosters?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -586,6 +658,9 @@ export type UserCreateWithoutSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -602,6 +677,9 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -634,6 +712,9 @@ export type UserUpdateWithoutSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -650,6 +731,9 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -666,6 +750,9 @@ export type UserCreateWithoutAccountsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -682,6 +769,9 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -714,6 +804,9 @@ export type UserUpdateWithoutAccountsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -730,6 +823,9 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -746,6 +842,9 @@ export type UserCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -762,6 +861,9 @@ export type UserUncheckedCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -794,6 +896,9 @@ export type UserUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -810,6 +915,9 @@ export type UserUncheckedUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -826,6 +934,9 @@ export type UserCreateWithoutTransactionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -842,6 +953,9 @@ export type UserUncheckedCreateWithoutTransactionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -874,6 +988,9 @@ export type UserUpdateWithoutTransactionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -890,6 +1007,9 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -906,6 +1026,9 @@ export type UserCreateWithoutTradesCreatedInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -922,6 +1045,9 @@ export type UserUncheckedCreateWithoutTradesCreatedInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -943,6 +1069,9 @@ export type UserCreateWithoutTradesAcceptedInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -959,6 +1088,9 @@ export type UserUncheckedCreateWithoutTradesAcceptedInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coins?: number
+  lastDailyDate?: string | null
+  lastWeeklyDate?: string | null
+  freeBoosters?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -991,6 +1123,9 @@ export type UserUpdateWithoutTradesCreatedInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1007,6 +1142,9 @@ export type UserUncheckedUpdateWithoutTradesCreatedInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1034,6 +1172,9 @@ export type UserUpdateWithoutTradesAcceptedInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1050,6 +1191,9 @@ export type UserUncheckedUpdateWithoutTradesAcceptedInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coins?: Prisma.IntFieldUpdateOperationsInput | number
+  lastDailyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastWeeklyDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1142,6 +1286,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   coins?: boolean
+  lastDailyDate?: boolean
+  lastWeeklyDate?: boolean
+  freeBoosters?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   cards?: boolean | Prisma.User$cardsArgs<ExtArgs>
@@ -1160,6 +1307,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   coins?: boolean
+  lastDailyDate?: boolean
+  lastWeeklyDate?: boolean
+  freeBoosters?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1171,6 +1321,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   coins?: boolean
+  lastDailyDate?: boolean
+  lastWeeklyDate?: boolean
+  freeBoosters?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1182,9 +1335,12 @@ export type UserSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   coins?: boolean
+  lastDailyDate?: boolean
+  lastWeeklyDate?: boolean
+  freeBoosters?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins" | "lastDailyDate" | "lastWeeklyDate" | "freeBoosters", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -1216,6 +1372,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     coins: number
+    lastDailyDate: string | null
+    lastWeeklyDate: string | null
+    freeBoosters: number
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1653,6 +1812,9 @@ export interface UserFieldRefs {
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly coins: Prisma.FieldRef<"User", 'Int'>
+  readonly lastDailyDate: Prisma.FieldRef<"User", 'String'>
+  readonly lastWeeklyDate: Prisma.FieldRef<"User", 'String'>
+  readonly freeBoosters: Prisma.FieldRef<"User", 'Int'>
 }
     
 

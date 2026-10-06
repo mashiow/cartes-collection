@@ -62,3 +62,8 @@ export type CoinDrop = Prisma.CoinDropModel
  * 
  */
 export type Trade = Prisma.TradeModel
+/**
+ * Model News
+ * 
+ */
+export type News = Prisma.NewsModel

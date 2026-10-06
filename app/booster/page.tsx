@@ -12,29 +12,43 @@ export default async function BoosterPage() {
 
   if (!session) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-4">
-        <p>Connecte-toi pour ouvrir des boosters.</p>
-        <Link href="/" className="btn-sakura btn-sakura-sm">
-          Retour à l&apos;accueil
-        </Link>
+      <main className="flex min-h-screen items-center justify-center p-6">
+        <div className="panel-sakura flex flex-col items-center gap-4 text-center">
+          <p className="text-xl">Connecte-toi pour ouvrir des boosters.</p>
+          <Link href="/" className="btn-sakura btn-sakura-sm">
+            Accueil
+          </Link>
+        </div>
       </main>
     );
   }
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { coins: true },
+    select: { coins: true, freeBoosters: true },
   });
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center gap-8 p-6">
-      <div className="flex w-full items-center justify-between">
-        <h1 className="text-3xl font-bold">Boosters</h1>
-        <Link href="/" className="btn-sakura btn-sakura-sm">
-          Accueil
-        </Link>
+    <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-8 p-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-4xl font-bold">Boosters</h1>
+        <div className="flex gap-4">
+          <Link href="/boutique" className="btn-sakura btn-sakura-sm">
+            Boutique
+          </Link>
+          <Link href="/" className="btn-sakura btn-sakura-sm">
+            Accueil
+          </Link>
+        </div>
       </div>
-      <BoosterOpener coins={user?.coins ?? 0} price={BOOSTER_PRICE} />
+
+      <div className="panel-sakura">
+        <BoosterOpener
+          coins={user?.coins ?? 0}
+          price={BOOSTER_PRICE}
+          freeBoosters={user?.freeBoosters ?? 0}
+        />
+      </div>
     </main>
   );
 }

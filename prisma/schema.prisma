@@ -32,6 +32,10 @@ model User {
 
   tradesCreated  Trade[] @relation("TradeCreator")
   tradesAccepted Trade[] @relation("TradeAccepter")
+  
+  lastDailyDate  String?
+  lastWeeklyDate String?
+  freeBoosters   Int     @default(0)
 }
 
 model Session {
@@ -148,4 +152,11 @@ model Trade {
   wantedCard  Card  @relation("TradeWanted", fields: [wantedCardId], references: [id])
 
   @@index([status])
+}
+
+model News {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  createdAt DateTime @default(now())
 }

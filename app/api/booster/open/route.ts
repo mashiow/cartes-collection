@@ -5,23 +5,39 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BOOSTER_PRICE, rollRarity } from "@/lib/booster";
 
-export async function POST() {
+const ERRORS: Record<string, string> = {
+  NOT_ENOUGH_COINS: "Pas assez de monnaie",
+  NO_FREE_BOOSTER: "Tu n'as pas de booster offert",
+  NO_CARDS: "Aucune carte disponible",
+};
+
+export async function POST(request: Request) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) {
     return NextResponse.json({ error: "Non connecté" }, { status: 401 });
   }
+
+  const body = await request.json().catch(() => null);
+  const useFree = body?.free === true;
 
   const userId = session.user.id;
   const rarity = rollRarity();
 
   try {
     const card = await prisma.$transaction(async (tx) => {
-      // On retire la monnaie seulement s'il y en a assez
-      const debit = await tx.user.updateMany({
-        where: { id: userId, coins: { gte: BOOSTER_PRICE } },
-        data: { coins: { decrement: BOOSTER_PRICE } },
-      });
-      if (debit.count === 0) throw new Error("NOT_ENOUGH_COINS");
+      if (useFree) {
+        const used = await tx.user.updateMany({
+          where: { id: userId, freeBoosters: { gte: 1 } },
+          data: { freeBoosters: { decrement: 1 } },
+        });
+        if (used.count === 0) throw new Error("NO_FREE_BOOSTER");
+      } else {
+        const debit = await tx.user.updateMany({
+          where: { id: userId, coins: { gte: BOOSTER_PRICE } },
+          data: { coins: { decrement: BOOSTER_PRICE } },
+        });
+        if (debit.count === 0) throw new Error("NOT_ENOUGH_COINS");
+      }
 
       let candidates = await tx.card.findMany({ where: { rarity } });
       if (candidates.length === 0) candidates = await tx.card.findMany();
@@ -38,8 +54,8 @@ export async function POST() {
       await tx.coinTransaction.create({
         data: {
           userId,
-          amount: -BOOSTER_PRICE,
-          reason: "Ouverture d'un booster",
+          amount: useFree ? 0 : -BOOSTER_PRICE,
+          reason: useFree ? "Booster offert ouvert" : "Ouverture d'un booster",
         },
       });
 
@@ -48,8 +64,8 @@ export async function POST() {
 
     return NextResponse.json({ card });
   } catch (e) {
-    if (e instanceof Error && e.message === "NOT_ENOUGH_COINS") {
-      return NextResponse.json({ error: "Pas assez de monnaie" }, { status: 400 });
+    if (e instanceof Error && ERRORS[e.message]) {
+      return NextResponse.json({ error: ERRORS[e.message] }, { status: 400 });
     }
     console.error(e);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });

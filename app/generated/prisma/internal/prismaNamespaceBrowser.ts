@@ -59,7 +59,8 @@ export const ModelName = {
   UserCard: 'UserCard',
   CoinTransaction: 'CoinTransaction',
   CoinDrop: 'CoinDrop',
-  Trade: 'Trade'
+  Trade: 'Trade',
+  News: 'News'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,7 +87,10 @@ export const UserScalarFieldEnum = {
   image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  coins: 'coins'
+  coins: 'coins',
+  lastDailyDate: 'lastDailyDate',
+  lastWeeklyDate: 'lastWeeklyDate',
+  freeBoosters: 'freeBoosters'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -196,6 +200,16 @@ export const TradeScalarFieldEnum = {
 } as const
 
 export type TradeScalarFieldEnum = (typeof TradeScalarFieldEnum)[keyof typeof TradeScalarFieldEnum]
+
+
+export const NewsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  createdAt: 'createdAt'
+} as const
+
+export type NewsScalarFieldEnum = (typeof NewsScalarFieldEnum)[keyof typeof NewsScalarFieldEnum]
 
 
 export const SortOrder = {
