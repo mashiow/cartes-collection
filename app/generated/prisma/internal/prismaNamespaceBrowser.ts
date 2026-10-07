@@ -94,7 +94,9 @@ export const UserScalarFieldEnum = {
   lastWeeklyDate: 'lastWeeklyDate',
   freeBoosters: 'freeBoosters',
   gamesDate: 'gamesDate',
-  gamesPlayed: 'gamesPlayed'
+  gamesPlayed: 'gamesPlayed',
+  isAdmin: 'isAdmin',
+  hideFromLeaderboard: 'hideFromLeaderboard'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

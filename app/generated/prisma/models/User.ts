@@ -52,6 +52,8 @@ export type UserMinAggregateOutputType = {
   freeBoosters: number | null
   gamesDate: string | null
   gamesPlayed: number | null
+  isAdmin: boolean | null
+  hideFromLeaderboard: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -68,6 +70,8 @@ export type UserMaxAggregateOutputType = {
   freeBoosters: number | null
   gamesDate: string | null
   gamesPlayed: number | null
+  isAdmin: boolean | null
+  hideFromLeaderboard: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -84,6 +88,8 @@ export type UserCountAggregateOutputType = {
   freeBoosters: number
   gamesDate: number
   gamesPlayed: number
+  isAdmin: number
+  hideFromLeaderboard: number
   _all: number
 }
 
@@ -114,6 +120,8 @@ export type UserMinAggregateInputType = {
   freeBoosters?: true
   gamesDate?: true
   gamesPlayed?: true
+  isAdmin?: true
+  hideFromLeaderboard?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -130,6 +138,8 @@ export type UserMaxAggregateInputType = {
   freeBoosters?: true
   gamesDate?: true
   gamesPlayed?: true
+  isAdmin?: true
+  hideFromLeaderboard?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -146,6 +156,8 @@ export type UserCountAggregateInputType = {
   freeBoosters?: true
   gamesDate?: true
   gamesPlayed?: true
+  isAdmin?: true
+  hideFromLeaderboard?: true
   _all?: true
 }
 
@@ -249,6 +261,8 @@ export type UserGroupByOutputType = {
   freeBoosters: number
   gamesDate: string | null
   gamesPlayed: number
+  isAdmin: boolean
+  hideFromLeaderboard: boolean
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -288,6 +302,8 @@ export type UserWhereInput = {
   freeBoosters?: Prisma.IntFilter<"User"> | number
   gamesDate?: Prisma.StringNullableFilter<"User"> | string | null
   gamesPlayed?: Prisma.IntFilter<"User"> | number
+  isAdmin?: Prisma.BoolFilter<"User"> | boolean
+  hideFromLeaderboard?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -310,6 +326,8 @@ export type UserOrderByWithRelationInput = {
   freeBoosters?: Prisma.SortOrder
   gamesDate?: Prisma.SortOrderInput | Prisma.SortOrder
   gamesPlayed?: Prisma.SortOrder
+  isAdmin?: Prisma.SortOrder
+  hideFromLeaderboard?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   cards?: Prisma.UserCardOrderByRelationAggregateInput
@@ -335,6 +353,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   freeBoosters?: Prisma.IntFilter<"User"> | number
   gamesDate?: Prisma.StringNullableFilter<"User"> | string | null
   gamesPlayed?: Prisma.IntFilter<"User"> | number
+  isAdmin?: Prisma.BoolFilter<"User"> | boolean
+  hideFromLeaderboard?: Prisma.BoolFilter<"User"> | boolean
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   cards?: Prisma.UserCardListRelationFilter
@@ -357,6 +377,8 @@ export type UserOrderByWithAggregationInput = {
   freeBoosters?: Prisma.SortOrder
   gamesDate?: Prisma.SortOrderInput | Prisma.SortOrder
   gamesPlayed?: Prisma.SortOrder
+  isAdmin?: Prisma.SortOrder
+  hideFromLeaderboard?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -381,6 +403,8 @@ export type UserScalarWhereWithAggregatesInput = {
   freeBoosters?: Prisma.IntWithAggregatesFilter<"User"> | number
   gamesDate?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   gamesPlayed?: Prisma.IntWithAggregatesFilter<"User"> | number
+  isAdmin?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  hideFromLeaderboard?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -397,6 +421,8 @@ export type UserCreateInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -419,6 +445,8 @@ export type UserUncheckedCreateInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -441,6 +469,8 @@ export type UserUpdateInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -463,6 +493,8 @@ export type UserUncheckedUpdateInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -485,6 +517,8 @@ export type UserCreateManyInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -501,6 +535,8 @@ export type UserUpdateManyMutationInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -517,6 +553,8 @@ export type UserUncheckedUpdateManyInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -533,6 +571,8 @@ export type UserCountOrderByAggregateInput = {
   freeBoosters?: Prisma.SortOrder
   gamesDate?: Prisma.SortOrder
   gamesPlayed?: Prisma.SortOrder
+  isAdmin?: Prisma.SortOrder
+  hideFromLeaderboard?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -555,6 +595,8 @@ export type UserMaxOrderByAggregateInput = {
   freeBoosters?: Prisma.SortOrder
   gamesDate?: Prisma.SortOrder
   gamesPlayed?: Prisma.SortOrder
+  isAdmin?: Prisma.SortOrder
+  hideFromLeaderboard?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -571,6 +613,8 @@ export type UserMinOrderByAggregateInput = {
   freeBoosters?: Prisma.SortOrder
   gamesDate?: Prisma.SortOrder
   gamesPlayed?: Prisma.SortOrder
+  isAdmin?: Prisma.SortOrder
+  hideFromLeaderboard?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -713,6 +757,8 @@ export type UserCreateWithoutSessionsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -734,6 +780,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -771,6 +819,8 @@ export type UserUpdateWithoutSessionsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -792,6 +842,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -813,6 +865,8 @@ export type UserCreateWithoutAccountsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -834,6 +888,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -871,6 +927,8 @@ export type UserUpdateWithoutAccountsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -892,6 +950,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -913,6 +973,8 @@ export type UserCreateWithoutCardsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionCreateNestedManyWithoutUserInput
@@ -934,6 +996,8 @@ export type UserUncheckedCreateWithoutCardsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.CoinTransactionUncheckedCreateNestedManyWithoutUserInput
@@ -971,6 +1035,8 @@ export type UserUpdateWithoutCardsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUpdateManyWithoutUserNestedInput
@@ -992,6 +1058,8 @@ export type UserUncheckedUpdateWithoutCardsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.CoinTransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -1013,6 +1081,8 @@ export type UserCreateWithoutTransactionsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -1034,6 +1104,8 @@ export type UserUncheckedCreateWithoutTransactionsInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -1071,6 +1143,8 @@ export type UserUpdateWithoutTransactionsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1092,6 +1166,8 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1113,6 +1189,8 @@ export type UserCreateWithoutTradesCreatedInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -1134,6 +1212,8 @@ export type UserUncheckedCreateWithoutTradesCreatedInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -1160,6 +1240,8 @@ export type UserCreateWithoutTradesAcceptedInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardCreateNestedManyWithoutUserInput
@@ -1181,6 +1263,8 @@ export type UserUncheckedCreateWithoutTradesAcceptedInput = {
   freeBoosters?: number
   gamesDate?: string | null
   gamesPlayed?: number
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   cards?: Prisma.UserCardUncheckedCreateNestedManyWithoutUserInput
@@ -1218,6 +1302,8 @@ export type UserUpdateWithoutTradesCreatedInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1239,6 +1325,8 @@ export type UserUncheckedUpdateWithoutTradesCreatedInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1271,6 +1359,8 @@ export type UserUpdateWithoutTradesAcceptedInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUpdateManyWithoutUserNestedInput
@@ -1292,6 +1382,8 @@ export type UserUncheckedUpdateWithoutTradesAcceptedInput = {
   freeBoosters?: Prisma.IntFieldUpdateOperationsInput | number
   gamesDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gamesPlayed?: Prisma.IntFieldUpdateOperationsInput | number
+  isAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hideFromLeaderboard?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   cards?: Prisma.UserCardUncheckedUpdateManyWithoutUserNestedInput
@@ -1389,6 +1481,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   freeBoosters?: boolean
   gamesDate?: boolean
   gamesPlayed?: boolean
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   cards?: boolean | Prisma.User$cardsArgs<ExtArgs>
@@ -1412,6 +1506,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   freeBoosters?: boolean
   gamesDate?: boolean
   gamesPlayed?: boolean
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1428,6 +1524,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   freeBoosters?: boolean
   gamesDate?: boolean
   gamesPlayed?: boolean
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1444,9 +1542,11 @@ export type UserSelectScalar = {
   freeBoosters?: boolean
   gamesDate?: boolean
   gamesPlayed?: boolean
+  isAdmin?: boolean
+  hideFromLeaderboard?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins" | "lastDailyDate" | "lastWeeklyDate" | "freeBoosters" | "gamesDate" | "gamesPlayed", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "coins" | "lastDailyDate" | "lastWeeklyDate" | "freeBoosters" | "gamesDate" | "gamesPlayed" | "isAdmin" | "hideFromLeaderboard", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -1483,6 +1583,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     freeBoosters: number
     gamesDate: string | null
     gamesPlayed: number
+    isAdmin: boolean
+    hideFromLeaderboard: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1925,6 +2027,8 @@ export interface UserFieldRefs {
   readonly freeBoosters: Prisma.FieldRef<"User", 'Int'>
   readonly gamesDate: Prisma.FieldRef<"User", 'String'>
   readonly gamesPlayed: Prisma.FieldRef<"User", 'Int'>
+  readonly isAdmin: Prisma.FieldRef<"User", 'Boolean'>
+  readonly hideFromLeaderboard: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 

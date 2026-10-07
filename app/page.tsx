@@ -22,6 +22,8 @@ const menu = [
   { href: "/echanges", label: "Échanges" },
   { href: "/jeux", label: "Mini-jeux" },
   { href: "/faq", label: "FAQ" },
+  { href: "/classement", label: "Classement" },
+  { href: "/profil", label: "Mon profil" },
 
 ];
 

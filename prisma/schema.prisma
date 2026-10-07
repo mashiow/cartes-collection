@@ -39,6 +39,9 @@ model User {
 
   gamesDate   String?
   gamesPlayed Int     @default(0)
+
+    isAdmin             Boolean @default(false)
+  hideFromLeaderboard Boolean @default(false)
 }
 
 model Session {
