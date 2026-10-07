@@ -4,6 +4,7 @@ import { SELL_PRICES } from "@/lib/shop";
 import { DAILY_GAMES, QUIZ_REWARD } from "@/lib/quiz";
 import { SCRATCH_PRIZES } from "@/lib/scratch";
 import { prizeLabel } from "@/lib/scratch-format";
+import ContactForm from "@/components/ContactForm";
 
 // À adapter si tu changes les réglages du bot Discord
 const DROP_MIN_COINS = 50;
@@ -286,7 +287,15 @@ export default function FaqPage() {
             - Game Design : Filounote et Mashiow
             </p>
             </Section>
-
+        
+        <Section title="Nous contacter">
+          <p>
+            Une question, un bug, une idée pour le jeu ? Écris-nous ici, ton
+            message arrive directement à l’équipe.
+          </p>
+          <ContactForm />
+        
+        </Section>
       </div>
     </main>
   );
