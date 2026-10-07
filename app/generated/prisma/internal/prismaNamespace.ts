@@ -407,7 +407,8 @@ export const ModelName = {
   CoinDrop: 'CoinDrop',
   Trade: 'Trade',
   News: 'News',
-  QuizRound: 'QuizRound'
+  QuizRound: 'QuizRound',
+  ScratchTicket: 'ScratchTicket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news" | "quizRound"
+    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news" | "quizRound" | "scratchTicket"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1241,6 +1242,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ScratchTicket: {
+      payload: Prisma.$ScratchTicketPayload<ExtArgs>
+      fields: Prisma.ScratchTicketFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ScratchTicketFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ScratchTicketFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        findFirst: {
+          args: Prisma.ScratchTicketFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ScratchTicketFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        findMany: {
+          args: Prisma.ScratchTicketFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>[]
+        }
+        create: {
+          args: Prisma.ScratchTicketCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        createMany: {
+          args: Prisma.ScratchTicketCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ScratchTicketCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>[]
+        }
+        delete: {
+          args: Prisma.ScratchTicketDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        update: {
+          args: Prisma.ScratchTicketUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        deleteMany: {
+          args: Prisma.ScratchTicketDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ScratchTicketUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ScratchTicketUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>[]
+        }
+        upsert: {
+          args: Prisma.ScratchTicketUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScratchTicketPayload>
+        }
+        aggregate: {
+          args: Prisma.ScratchTicketAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateScratchTicket>
+        }
+        groupBy: {
+          args: Prisma.ScratchTicketGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScratchTicketGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ScratchTicketCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScratchTicketCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1426,6 +1501,19 @@ export const QuizRoundScalarFieldEnum = {
 } as const
 
 export type QuizRoundScalarFieldEnum = (typeof QuizRoundScalarFieldEnum)[keyof typeof QuizRoundScalarFieldEnum]
+
+
+export const ScratchTicketScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  day: 'day',
+  prizeCoins: 'prizeCoins',
+  prizeBoosters: 'prizeBoosters',
+  claimedAt: 'claimedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ScratchTicketScalarFieldEnum = (typeof ScratchTicketScalarFieldEnum)[keyof typeof ScratchTicketScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1710,6 +1798,7 @@ export type GlobalOmitConfig = {
   trade?: Prisma.TradeOmit
   news?: Prisma.NewsOmit
   quizRound?: Prisma.QuizRoundOmit
+  scratchTicket?: Prisma.ScratchTicketOmit
 }
 
 /* Types for Logging */

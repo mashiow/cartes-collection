@@ -61,7 +61,8 @@ export const ModelName = {
   CoinDrop: 'CoinDrop',
   Trade: 'Trade',
   News: 'News',
-  QuizRound: 'QuizRound'
+  QuizRound: 'QuizRound',
+  ScratchTicket: 'ScratchTicket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -226,6 +227,19 @@ export const QuizRoundScalarFieldEnum = {
 } as const
 
 export type QuizRoundScalarFieldEnum = (typeof QuizRoundScalarFieldEnum)[keyof typeof QuizRoundScalarFieldEnum]
+
+
+export const ScratchTicketScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  day: 'day',
+  prizeCoins: 'prizeCoins',
+  prizeBoosters: 'prizeBoosters',
+  claimedAt: 'claimedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ScratchTicketScalarFieldEnum = (typeof ScratchTicketScalarFieldEnum)[keyof typeof ScratchTicketScalarFieldEnum]
 
 
 export const SortOrder = {

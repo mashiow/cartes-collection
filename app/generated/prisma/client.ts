@@ -96,3 +96,8 @@ export type News = Prisma.NewsModel
  * 
  */
 export type QuizRound = Prisma.QuizRoundModel
+/**
+ * Model ScratchTicket
+ * 
+ */
+export type ScratchTicket = Prisma.ScratchTicketModel

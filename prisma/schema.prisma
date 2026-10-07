@@ -174,3 +174,16 @@ model QuizRound {
 
   @@index([userId, answeredAt])
 }
+
+model ScratchTicket {
+  id            String    @id @default(cuid())
+  userId        String
+  day           String
+  prizeCoins    Int       @default(0)
+  prizeBoosters Int       @default(0)
+  claimedAt     DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@unique([userId, day])
+  @@index([userId, claimedAt])
+}

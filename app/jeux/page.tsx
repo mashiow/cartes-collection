@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { todayKey } from "@/lib/rewards";
 import { DAILY_GAMES, QUIZ_REWARD } from "@/lib/quiz";
 import QuizGame from "@/components/QuizGame";
+import ScratchCard from "@/components/ScratchCard";
 
 export const dynamic = "force-dynamic";
 
@@ -25,8 +26,9 @@ export default async function GamesPage() {
   }
 
   const userId = session.user.id;
+  const today = todayKey();
 
-  const [user, pending] = await Promise.all([
+  const [user, pendingQuiz, pendingTicket, todayTicket] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
       select: { coins: true, gamesDate: true, gamesPlayed: true },
@@ -35,10 +37,23 @@ export default async function GamesPage() {
       where: { userId, answeredAt: null },
       select: { id: true },
     }),
+    prisma.scratchTicket.findFirst({
+      where: { userId, claimedAt: null },
+      select: { id: true },
+    }),
+    prisma.scratchTicket.findUnique({
+      where: { userId_day: { userId, day: today } },
+    }),
   ]);
 
-  const played = user?.gamesDate === todayKey() ? user.gamesPlayed : 0;
+  const played = user?.gamesDate === today ? user.gamesPlayed : 0;
   const remaining = Math.max(0, DAILY_GAMES - played);
+
+  const scratchStatus = pendingTicket
+    ? "pending"
+    : todayTicket
+      ? "done"
+      : "available";
 
   return (
     <main className="mx-auto max-w-3xl p-6">
@@ -49,20 +64,35 @@ export default async function GamesPage() {
         </Link>
       </div>
 
-      <div className="panel-sakura">
-        <h2 className="panel-title">Qui est-ce ?</h2>
-        <p className="mb-6 text-center text-gray-200">
-          On te montre la description d&apos;une carte, à toi de retrouver
-          laquelle c&apos;est ! Une bonne réponse rapporte {QUIZ_REWARD} pièces,
-          et tu as {DAILY_GAMES} parties par jour.
-        </p>
-        <QuizGame
-          coins={user?.coins ?? 0}
-          remaining={remaining}
-          total={DAILY_GAMES}
-          reward={QUIZ_REWARD}
-          hasPending={!!pending}
-        />
+      <div className="flex flex-col gap-12">
+        <div className="panel-sakura">
+          <h2 className="panel-title">Qui est-ce ?</h2>
+          <p className="mb-6 text-center text-gray-200">
+            On te montre la description d&apos;une carte, à toi de retrouver
+            laquelle c&apos;est ! Une bonne réponse rapporte {QUIZ_REWARD}{" "}
+            pièces, et tu as {DAILY_GAMES} parties par jour.
+          </p>
+          <QuizGame
+            coins={user?.coins ?? 0}
+            remaining={remaining}
+            total={DAILY_GAMES}
+            reward={QUIZ_REWARD}
+            hasPending={!!pendingQuiz}
+          />
+        </div>
+
+        <div className="panel-sakura">
+          <h2 className="panel-title">Ticket à gratter</h2>
+          <p className="mb-6 text-center text-gray-200">
+            Un seul ticket par jour : gratte-le pour découvrir ton gain, des
+            pièces ou même un booster offert !
+          </p>
+          <ScratchCard
+            status={scratchStatus}
+            doneCoins={todayTicket?.prizeCoins ?? 0}
+            doneBoosters={todayTicket?.prizeBoosters ?? 0}
+          />
+        </div>
       </div>
     </main>
   );

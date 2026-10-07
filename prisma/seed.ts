@@ -238,6 +238,62 @@ const cards = [
     series: "Série 1",
     bio: "Les gros biscotos de anelyaa en sah ?",
   },
+  {
+    name: "Musique IA...",
+    image: "musiqueia.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "On ne sait toujours pas pourquoi il y a une musique d'IA dans son serveur et on me dit dans les oreillettes que Manolo est représenté en chat...",
+  },
+  {
+    name: "Obanai",
+    image: "obanai.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "Personnage de Demon Slayer, pilier du Serpent et l’amoureux de mitsuri (On m’a dit que Anelyaa appelait souvent son amoureux comme ça??)",
+  },
+  {
+    name: "Mitsuri",
+    image: "mitsuri.png",
+    rarity: "RARE",
+    series: "Série 1",
+    bio: "personnage De demon slayer, pilier de l’amour (et la plus belle mouhaha) finalement juste l’emblème de la chaîne",
+  },
+  {
+    name: "Photo de profil",
+    image: "photodeprofil.png",
+    rarity: "COMMON",
+    series: "Série 1",
+    bio: "Il n'y a rien de plus à ajouter, elle est là depuis le début hihi",
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ] as const;
 
