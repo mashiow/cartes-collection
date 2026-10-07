@@ -328,4 +328,4 @@ export default function BoosterOpener({
     </div>
   );
 }
-```
+
