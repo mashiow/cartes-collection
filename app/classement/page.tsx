@@ -24,7 +24,7 @@ export default async function LeaderboardPage() {
   }
 
   const [totalCards, players] = await Promise.all([
-    prisma.card.count(),
+    prisma.card.count({ where: visibleCardsWhere() }),
     prisma.user.findMany({
       where: { hideFromLeaderboard: false, cards: { some: {} } },
       orderBy: [{ cards: { _count: "desc" } }, { createdAt: "asc" }],

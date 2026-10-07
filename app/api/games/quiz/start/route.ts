@@ -61,7 +61,7 @@ export async function POST() {
 
         // La bonne réponse : une carte qui a une bio
         const candidates = await tx.card.findMany({
-          where: { bio: { not: "" } },
+          where: { bio: { not: "" }, ...visibleCardsWhere() },
           select: { id: true },
         });
         if (candidates.length === 0) throw new Error("NOT_ENOUGH_CARDS");
@@ -69,7 +69,7 @@ export async function POST() {
 
         // Trois mauvaises réponses au hasard
         const others = await tx.card.findMany({
-          where: { id: { not: answer.id } },
+         where: { id: { not: answer.id }, ...visibleCardsWhere() },
           select: { id: true },
         });
         if (others.length < 3) throw new Error("NOT_ENOUGH_CARDS");

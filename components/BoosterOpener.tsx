@@ -1,3 +1,4 @@
+```tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -90,8 +91,11 @@ export default function BoosterOpener({
   const [selling, setSelling] = useState(false);
   const [card, setCard] = useState<Card | null>(null);
   const [revealKey, setRevealKey] = useState(0);
-  const [phase, setPhase] = useState<"revealed" | "kept" | "sold">("revealed");
+  const [phase, setPhase] = useState<"revealed" | "kept" | "sold">(
+    "revealed"
+  );
   const [soldFor, setSoldFor] = useState(0);
+  const [limited, setLimited] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // On retrouve le choix "son coupé" fait lors d'une visite précédente
@@ -141,6 +145,8 @@ export default function BoosterOpener({
         setCard(data.card);
         setPhase("revealed");
         setRevealKey((k) => k + 1);
+        setLimited(!!data.limited);
+
         if (!muted) {
           playSound(SOUNDS[data.card.rarity] ?? SOUNDS.COMMON, 0.7);
         }
@@ -159,13 +165,16 @@ export default function BoosterOpener({
     if (!card) return;
     setSelling(true);
     setError(null);
+
     try {
       const res = await fetch("/api/shop/sell", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cardId: card.id, quantity: 1 }),
       });
+
       const data = await res.json();
+
       if (!res.ok) {
         setError(data.error ?? "Erreur");
       } else {
@@ -180,7 +189,8 @@ export default function BoosterOpener({
     }
   }
 
-  const big = card?.rarity === "EPIC" || card?.rarity === "LEGENDARY";
+  const big =
+    card?.rarity === "EPIC" || card?.rarity === "LEGENDARY";
 
   return (
     <div className="flex flex-col items-center gap-6 p-2">
@@ -188,6 +198,7 @@ export default function BoosterOpener({
         <p className="text-2xl">
           Ta monnaie : <strong>{coins}</strong> 🪙
         </p>
+
         <button
           onClick={toggleMute}
           className="btn-sakura btn-sakura-sm"
@@ -229,6 +240,7 @@ export default function BoosterOpener({
           <div className="flex flex-col items-center gap-4">
             <div key={revealKey} className="relative">
               <div className="reveal-flash" />
+
               <div className="burst">
                 {BURST.map((p, i) => (
                   <span
@@ -263,10 +275,18 @@ export default function BoosterOpener({
                     "🃏"
                   )}
                 </div>
+
                 <p className="text-lg font-bold">{card.name}</p>
+
                 <p className="text-sm text-gray-300">
                   {rarityLabels[card.rarity]}
                 </p>
+
+                {limited && (
+                  <p className="mt-1 text-sm font-semibold text-pink-300">
+                    ✨ Édition limitée
+                  </p>
+                )}
               </div>
             </div>
 
@@ -281,6 +301,7 @@ export default function BoosterOpener({
                     ? "Vente..."
                     : `Vente rapide (+${sellPrice(card.rarity)} 🪙)`}
                 </button>
+
                 <button
                   onClick={() => setPhase("kept")}
                   disabled={selling}
@@ -292,8 +313,11 @@ export default function BoosterOpener({
             )}
 
             {phase === "kept" && (
-              <p className="text-green-400">Carte ajoutée à ta collection !</p>
+              <p className="text-green-400">
+                Carte ajoutée à ta collection !
+              </p>
             )}
+
             {phase === "sold" && (
               <p className="text-yellow-300">
                 Carte vendue pour {soldFor} pièces.
@@ -305,3 +329,4 @@ export default function BoosterOpener({
     </div>
   );
 }
+```

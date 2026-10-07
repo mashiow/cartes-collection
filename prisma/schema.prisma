@@ -100,6 +100,9 @@ model Card {
 
   tradesOffered Trade[] @relation("TradeOffered")
   tradesWanted  Trade[] @relation("TradeWanted")
+
+  limitedSeriesId String?
+  limitedSeries   LimitedSeries? @relation(fields: [limitedSeriesId], references: [id])
 }
 
 model UserCard {
@@ -189,4 +192,16 @@ model ScratchTicket {
 
   @@unique([userId, day])
   @@index([userId, claimedAt])
+}
+
+model LimitedSeries {
+  id        String   @id @default(cuid())
+  name      String
+  startsAt  DateTime
+  endsAt    DateTime
+  dropRate  Float    @default(10)
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  cards Card[]
 }

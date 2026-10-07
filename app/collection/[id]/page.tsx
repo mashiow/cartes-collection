@@ -40,7 +40,10 @@ export default async function CardPage({
 }) {
   const { id } = await params;
 
-  const card = await prisma.card.findUnique({ where: { id } });
+  const card = await prisma.card.findUnique({
+    where: { id },
+    include: { limitedSeries: { select: { name: true } } },
+  });
   if (!card) notFound();
 
   const session = await auth.api.getSession({ headers: await headers() });
@@ -107,6 +110,13 @@ export default async function CardPage({
             >
               {rarityLabels[card.rarity]}
             </span>
+
+            {card.limitedSeries && (
+              <span className="rounded-full bg-pink-600 px-4 py-1 text-base font-semibold text-white">
+                ✨ Édition limitée : {card.limitedSeries.name}
+              </span>
+            )}
+
             <span className="text-gray-300">{card.series}</span>
           </div>
 

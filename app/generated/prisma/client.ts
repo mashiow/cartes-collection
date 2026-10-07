@@ -101,3 +101,8 @@ export type QuizRound = Prisma.QuizRoundModel
  * 
  */
 export type ScratchTicket = Prisma.ScratchTicketModel
+/**
+ * Model LimitedSeries
+ * 
+ */
+export type LimitedSeries = Prisma.LimitedSeriesModel

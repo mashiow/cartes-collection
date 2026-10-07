@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   const rarity = rollRarity();
 
   try {
-    const card = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx) => {
       if (useFree) {
         const used = await tx.user.updateMany({
           where: { id: userId, freeBoosters: { gte: 1 } },
@@ -39,8 +39,37 @@ export async function POST(request: Request) {
         if (debit.count === 0) throw new Error("NOT_ENOUGH_COINS");
       }
 
-      let candidates = await tx.card.findMany({ where: { rarity } });
-      if (candidates.length === 0) candidates = await tx.card.findMany();
+      const now = new Date();
+
+      // Une édition limitée est-elle en cours ?
+      const series = await tx.limitedSeries.findFirst({
+        where: { enabled: true, startsAt: { lte: now }, endsAt: { gt: now } },
+        orderBy: { startsAt: "desc" },
+      });
+
+      // Tirage normal : jamais de carte d'édition limitée
+      let candidates = await tx.card.findMany({
+        where: { rarity, limitedSeriesId: null },
+      });
+      let limited = false;
+
+      // Chance de tomber sur une carte de l'édition limitée (précision 0,01 %)
+      if (series && series.dropRate > 0) {
+        const chance = Math.round(series.dropRate * 100);
+        if (randomInt(10000) < chance) {
+          const limitedCards = await tx.card.findMany({
+            where: { limitedSeriesId: series.id },
+          });
+          if (limitedCards.length > 0) {
+            candidates = limitedCards;
+            limited = true;
+          }
+        }
+      }
+
+      if (candidates.length === 0) {
+        candidates = await tx.card.findMany({ where: { limitedSeriesId: null } });
+      }
       if (candidates.length === 0) throw new Error("NO_CARDS");
 
       const picked = candidates[randomInt(candidates.length)];
@@ -59,10 +88,10 @@ export async function POST(request: Request) {
         },
       });
 
-      return picked;
+      return { picked, limited };
     });
 
-    return NextResponse.json({ card });
+    return NextResponse.json({ card: result.picked, limited: result.limited });
   } catch (e) {
     if (e instanceof Error && ERRORS[e.message]) {
       return NextResponse.json({ error: ERRORS[e.message] }, { status: 400 });

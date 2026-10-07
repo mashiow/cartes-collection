@@ -23,10 +23,23 @@ export default async function BoosterPage() {
     );
   }
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { coins: true, freeBoosters: true },
-  });
+  const now = new Date();
+
+  const [user, limited] = await Promise.all([
+    prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { coins: true, freeBoosters: true },
+    }),
+    prisma.limitedSeries.findFirst({
+      where: { enabled: true, startsAt: { lte: now }, endsAt: { gt: now } },
+      orderBy: { startsAt: "desc" },
+      include: { _count: { select: { cards: true } } },
+    }),
+  ]);
+
+  const daysLeft = limited
+    ? Math.max(1, Math.ceil((limited.endsAt.getTime() - now.getTime()) / 86400000))
+    : 0;
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-8 p-6">
@@ -41,6 +54,19 @@ export default async function BoosterPage() {
           </Link>
         </div>
       </div>
+
+      {limited && (
+        <div className="panel-sakura text-center">
+          <p className="text-2xl font-bold text-[#f4a7c0]">
+            ✨ Édition limitée : {limited.name}
+          </p>
+          <p className="text-lg">
+            {limited._count.cards} carte{limited._count.cards > 1 ? "s" : ""}{" "}
+            exclusive{limited._count.cards > 1 ? "s" : ""} dans les boosters,
+            encore {daysLeft} jour{daysLeft > 1 ? "s" : ""} !
+          </p>
+        </div>
+      )}
 
       <div className="panel-sakura">
         <BoosterOpener

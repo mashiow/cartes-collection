@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { visibleCardsWhere } from "@/lib/limited";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,8 @@ export default async function CollectionPage() {
   const session = await auth.api.getSession({ headers: await headers() });
 
   const cards = await prisma.card.findMany({
+    where: visibleCardsWhere(),
+    include: { limitedSeries: { select: { name: true } } },
     orderBy: [{ series: "asc" }, { name: "asc" }],
   });
 
@@ -53,7 +56,7 @@ export default async function CollectionPage() {
 
           const content = (
             <div
-              className={`relative rounded-lg border-2 p-3 text-center ${
+              className={`relative rounded-lg border-2 p-3 text-center text-white ${
                 rarityStyles[card.rarity]
               } ${
                 hasCard
@@ -61,8 +64,13 @@ export default async function CollectionPage() {
                   : "opacity-40 grayscale"
               }`}
             >
+              {card.limitedSeries && (
+                <span className="absolute left-2 top-2 z-10 rounded bg-pink-600 px-2 py-0.5 text-xs font-semibold">
+                  ✨ Limitée
+                </span>
+              )}
               {quantity > 1 && (
-                <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-0.5 text-xs">
+                <span className="absolute right-2 top-2 z-10 rounded bg-black/70 px-2 py-0.5 text-xs">
                   x{quantity}
                 </span>
               )}

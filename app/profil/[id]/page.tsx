@@ -89,7 +89,7 @@ export default async function ProfilePage({
   }
 
   const [allCards, owned] = await Promise.all([
-    prisma.card.findMany({ select: { rarity: true } }),
+    prisma.card.findMany({ where: visibleCardsWhere(), select: { rarity: true } }),
     prisma.userCard.findMany({
       where: { userId: id },
       include: { card: { select: { rarity: true } } },

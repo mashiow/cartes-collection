@@ -408,7 +408,8 @@ export const ModelName = {
   Trade: 'Trade',
   News: 'News',
   QuizRound: 'QuizRound',
-  ScratchTicket: 'ScratchTicket'
+  ScratchTicket: 'ScratchTicket',
+  LimitedSeries: 'LimitedSeries'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news" | "quizRound" | "scratchTicket"
+    modelProps: "user" | "session" | "account" | "verification" | "card" | "userCard" | "coinTransaction" | "coinDrop" | "trade" | "news" | "quizRound" | "scratchTicket" | "limitedSeries"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1316,6 +1317,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LimitedSeries: {
+      payload: Prisma.$LimitedSeriesPayload<ExtArgs>
+      fields: Prisma.LimitedSeriesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LimitedSeriesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LimitedSeriesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        findFirst: {
+          args: Prisma.LimitedSeriesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LimitedSeriesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        findMany: {
+          args: Prisma.LimitedSeriesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>[]
+        }
+        create: {
+          args: Prisma.LimitedSeriesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        createMany: {
+          args: Prisma.LimitedSeriesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LimitedSeriesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>[]
+        }
+        delete: {
+          args: Prisma.LimitedSeriesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        update: {
+          args: Prisma.LimitedSeriesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        deleteMany: {
+          args: Prisma.LimitedSeriesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LimitedSeriesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LimitedSeriesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>[]
+        }
+        upsert: {
+          args: Prisma.LimitedSeriesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LimitedSeriesPayload>
+        }
+        aggregate: {
+          args: Prisma.LimitedSeriesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLimitedSeries>
+        }
+        groupBy: {
+          args: Prisma.LimitedSeriesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LimitedSeriesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LimitedSeriesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LimitedSeriesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1427,7 +1502,8 @@ export const CardScalarFieldEnum = {
   bio: 'bio',
   imageUrl: 'imageUrl',
   rarity: 'rarity',
-  series: 'series'
+  series: 'series',
+  limitedSeriesId: 'limitedSeriesId'
 } as const
 
 export type CardScalarFieldEnum = (typeof CardScalarFieldEnum)[keyof typeof CardScalarFieldEnum]
@@ -1516,6 +1592,19 @@ export const ScratchTicketScalarFieldEnum = {
 } as const
 
 export type ScratchTicketScalarFieldEnum = (typeof ScratchTicketScalarFieldEnum)[keyof typeof ScratchTicketScalarFieldEnum]
+
+
+export const LimitedSeriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  dropRate: 'dropRate',
+  enabled: 'enabled',
+  createdAt: 'createdAt'
+} as const
+
+export type LimitedSeriesScalarFieldEnum = (typeof LimitedSeriesScalarFieldEnum)[keyof typeof LimitedSeriesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1801,6 +1890,7 @@ export type GlobalOmitConfig = {
   news?: Prisma.NewsOmit
   quizRound?: Prisma.QuizRoundOmit
   scratchTicket?: Prisma.ScratchTicketOmit
+  limitedSeries?: Prisma.LimitedSeriesOmit
 }
 
 /* Types for Logging */

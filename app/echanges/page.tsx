@@ -65,7 +65,10 @@ export default async function TradesPage() {
   const userId = session.user.id;
 
   const [allCards, owned, openTrades] = await Promise.all([
-    prisma.card.findMany({ orderBy: [{ series: "asc" }, { name: "asc" }] }),
+        prisma.card.findMany({
+      where: visibleCardsWhere(),
+      orderBy: [{ series: "asc" }, { name: "asc" }],
+    }),
     prisma.userCard.findMany({ where: { userId }, include: { card: true } }),
     prisma.trade.findMany({
       where: { status: "OPEN" },

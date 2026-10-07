@@ -62,7 +62,8 @@ export const ModelName = {
   Trade: 'Trade',
   News: 'News',
   QuizRound: 'QuizRound',
-  ScratchTicket: 'ScratchTicket'
+  ScratchTicket: 'ScratchTicket',
+  LimitedSeries: 'LimitedSeries'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -153,7 +154,8 @@ export const CardScalarFieldEnum = {
   bio: 'bio',
   imageUrl: 'imageUrl',
   rarity: 'rarity',
-  series: 'series'
+  series: 'series',
+  limitedSeriesId: 'limitedSeriesId'
 } as const
 
 export type CardScalarFieldEnum = (typeof CardScalarFieldEnum)[keyof typeof CardScalarFieldEnum]
@@ -242,6 +244,19 @@ export const ScratchTicketScalarFieldEnum = {
 } as const
 
 export type ScratchTicketScalarFieldEnum = (typeof ScratchTicketScalarFieldEnum)[keyof typeof ScratchTicketScalarFieldEnum]
+
+
+export const LimitedSeriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  dropRate: 'dropRate',
+  enabled: 'enabled',
+  createdAt: 'createdAt'
+} as const
+
+export type LimitedSeriesScalarFieldEnum = (typeof LimitedSeriesScalarFieldEnum)[keyof typeof LimitedSeriesScalarFieldEnum]
 
 
 export const SortOrder = {
