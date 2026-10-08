@@ -20,19 +20,107 @@ const rarityLabels: Record<string, string> = {
   LEGENDARY: "Légendaire",
 };
 
-export default async function CollectionPage() {
+const RARITY_ORDER: Record<string, number> = {
+  COMMON: 0,
+  RARE: 1,
+  EPIC: 2,
+  LEGENDARY: 3,
+};
+
+type SortKey = "defaut" | "nom" | "rarete";
+type Order = "asc" | "desc";
+
+export default async function CollectionPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tri?: string; ordre?: string }>;
+}) {
+  const { tri, ordre } = await searchParams;
+
+  const sort: SortKey = tri === "nom" || tri === "rarete" ? tri : "defaut";
+  const order: Order =
+    ordre === "asc" || ordre === "desc"
+      ? ordre
+      : sort === "rarete"
+        ? "desc"
+        : "asc";
+
   const session = await auth.api.getSession({ headers: await headers() });
 
   const cards = await prisma.card.findMany({
     where: visibleCardsWhere(),
     include: { limitedSeries: { select: { name: true } } },
-    orderBy: [{ series: "asc" }, { name: "asc" }],
   });
 
   const owned = session
     ? await prisma.userCard.findMany({ where: { userId: session.user.id } })
     : [];
   const quantities = new Map(owned.map((o) => [o.cardId, o.quantity]));
+
+  // ---------- Tri ----------
+  type CardRow = (typeof cards)[number];
+
+  const has = (c: CardRow) => (quantities.get(c.id) ?? 0) > 0;
+  const byName = (a: CardRow, b: CardRow) =>
+    a.name.localeCompare(b.name, "fr", { sensitivity: "base" });
+  const dir = order === "asc" ? 1 : -1;
+
+  // Départage : cartes découvertes d'abord (par nom), puis les autres dans un
+  // ordre neutre pour ne pas révéler leurs noms
+  const tie = (a: CardRow, b: CardRow) => {
+    const oa = has(a);
+    const ob = has(b);
+    if (oa !== ob) return oa ? -1 : 1;
+    if (oa && ob) return byName(a, b);
+    return a.id.localeCompare(b.id);
+  };
+
+  const sorted = [...cards];
+  if (sort === "nom") {
+    sorted.sort((a, b) => {
+      const oa = has(a);
+      const ob = has(b);
+      if (oa !== ob) return oa ? -1 : 1;
+      if (oa && ob) return dir * byName(a, b);
+      return (
+        RARITY_ORDER[a.rarity] - RARITY_ORDER[b.rarity] ||
+        a.id.localeCompare(b.id)
+      );
+    });
+  } else if (sort === "rarete") {
+    sorted.sort((a, b) => {
+      const diff = RARITY_ORDER[a.rarity] - RARITY_ORDER[b.rarity];
+      return diff !== 0 ? dir * diff : tie(a, b);
+    });
+  } else {
+    sorted.sort(
+      (a, b) => a.series.localeCompare(b.series, "fr") || byName(a, b)
+    );
+  }
+
+  // ---------- Boutons de tri ----------
+  function sortHref(key: SortKey) {
+    if (key === "defaut") return "/collection";
+    const defaultOrder: Order = key === "rarete" ? "desc" : "asc";
+    const next: Order =
+      sort === key ? (order === "asc" ? "desc" : "asc") : defaultOrder;
+    return `/collection?tri=${key}&ordre=${next}`;
+  }
+
+  function sortLabel(key: SortKey) {
+    if (key === "defaut") return "Par défaut";
+    const active = sort === key;
+    if (key === "nom") {
+      if (!active) return "Nom";
+      return order === "asc" ? "Nom (A → Z)" : "Nom (Z → A)";
+    }
+    if (!active) return "Rareté";
+    return order === "desc"
+      ? "Rareté (légendaires d'abord)"
+      : "Rareté (communes d'abord)";
+  }
+
+  const sortKeys: SortKey[] = ["defaut", "nom", "rarete"];
 
   return (
     <main className="mx-auto max-w-5xl p-6">
@@ -43,14 +131,32 @@ export default async function CollectionPage() {
         </Link>
       </div>
 
-      <p className="mb-6 text-gray-400">
+      <p className="mb-4 text-black">
         {session
           ? `${quantities.size} / ${cards.length} cartes découvertes`
           : "Connecte-toi pour voir tes cartes."}
       </p>
 
+      <div className="mb-6 flex flex-wrap items-center gap-3">
+        <span className="font-semibold">Trier :</span>
+        {sortKeys.map((key) => (
+          <Link
+            key={key}
+            href={sortHref(key)}
+            className="btn-sakura btn-sakura-sm"
+            style={
+              sort === key
+                ? { backgroundColor: "#f4a7c0", color: "#2b2b2b" }
+                : undefined
+            }
+          >
+            {sortLabel(key)}
+          </Link>
+        ))}
+      </div>
+
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-        {cards.map((card) => {
+        {sorted.map((card) => {
           const quantity = quantities.get(card.id) ?? 0;
           const hasCard = quantity > 0;
 
