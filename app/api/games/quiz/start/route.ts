@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { todayKey } from "@/lib/rewards";
 import { DAILY_GAMES, buildQuestion } from "@/lib/quiz";
+import { visibleCardsWhere } from "@/lib/limited";
 
 const ERRORS: Record<string, string> = {
   NO_GAMES_LEFT: `Tu as utilisé tes ${DAILY_GAMES} parties du jour. Reviens demain !`,

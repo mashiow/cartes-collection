@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import VisibilityToggle from "@/components/VisibilityToggle";
+import { visibleCardsWhere } from "@/lib/limited";
 
 export const dynamic = "force-dynamic";
 

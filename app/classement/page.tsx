@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { visibleCardsWhere } from "@/lib/limited";
 
 export const dynamic = "force-dynamic";
 

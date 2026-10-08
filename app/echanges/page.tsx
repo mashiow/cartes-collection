@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import CreateTradeForm from "@/components/CreateTradeForm";
 import TradeButton from "@/components/TradeButton";
+import { visibleCardsWhere } from "@/lib/limited";
 
 export const dynamic = "force-dynamic";
 
