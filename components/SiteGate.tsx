@@ -4,12 +4,15 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getSettings, isLocked } from "@/lib/site";
 import WaitingScreen from "@/components/WaitingScreen";
+import { connection } from "next/server";
 
 export default async function SiteGate({
   children,
 }: {
   children: React.ReactNode;
 }) {
+    // Ne rien lire dans la base pendant le build : seulement quand quelqu'un visite le site
+  await connection();
   const settings = await getSettings();
 
   // Site ouvert : tout le monde passe

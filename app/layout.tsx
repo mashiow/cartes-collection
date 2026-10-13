@@ -3,6 +3,8 @@ import { Kalam } from "next/font/google";
 import "./globals.css";
 import SiteGate from "@/components/SiteGate";
 
+export const dynamic = "force-dynamic";
+
 const handwritten = Kalam({
   weight: ["400", "700"],
   subsets: ["latin"],
