@@ -6,6 +6,8 @@ import AdminInventory from "@/components/AdminInventory";
 import AdminLimited from "@/components/AdminLimited";
 import AdminCardForm from "@/components/AdminCardForm";
 import AdminNews from "@/components/AdminNews";
+import AdminLaunch from "@/components/AdminLaunch";
+import { getSettings, isLocked } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -94,6 +96,7 @@ export default async function AdminPage() {
   }
 
   const now = new Date();
+  const settings = await getSettings();
 
   return (
     <main className="mx-auto max-w-4xl p-6">
@@ -115,6 +118,15 @@ export default async function AdminPage() {
         </div>
 
         <div className="panel-sakura">
+          <h2 className="panel-title">Lancement du site</h2>
+          <AdminLaunch
+            locked={isLocked(settings)}
+            launchAtIso={settings.launchAt ? settings.launchAt.toISOString() : null}
+            launchLabel={settings.launchAt ? formatDate(settings.launchAt) : null}
+          />
+        </div>
+         
+         <div className="panel-sakura">
           <h2 className="panel-title">Donner pièces, boosters, cartes</h2>
           <AdminGive
             players={players.map((p) => ({

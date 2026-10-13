@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Kalam } from "next/font/google";
 import "./globals.css";
+import SiteGate from "@/components/SiteGate";
 
 const handwritten = Kalam({
   weight: ["400", "700"],
@@ -21,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body className={handwritten.variable}>{children}</body>
+      <body className={handwritten.variable}><SiteGate>{children}</SiteGate></body>
     </html>
   );
 }

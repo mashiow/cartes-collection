@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isWednesday, todayKey } from "@/lib/rewards";
+import { lockedResponse } from "@/lib/site";
 
 export async function POST() {
   const session = await auth.api.getSession({ headers: await headers() });

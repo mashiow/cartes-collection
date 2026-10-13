@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { QUIZ_REWARD } from "@/lib/quiz";
+import { lockedResponse } from "@/lib/site";
 
 const ERRORS: Record<string, string> = {
   ROUND_NOT_FOUND: "Cette partie n'existe pas.",

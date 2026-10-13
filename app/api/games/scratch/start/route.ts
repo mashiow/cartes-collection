@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { todayKey } from "@/lib/rewards";
 import { rollPrize } from "@/lib/scratch";
+import { lockedResponse } from "@/lib/site";
 
 async function createTicket(userId: string, day: string) {
   const prize = rollPrize();

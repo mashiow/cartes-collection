@@ -82,3 +82,8 @@ export type ScratchTicket = Prisma.ScratchTicketModel
  * 
  */
 export type LimitedSeries = Prisma.LimitedSeriesModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel

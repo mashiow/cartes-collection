@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BOOSTER_PRICE, rollRarity } from "@/lib/booster";
+import { lockedResponse } from "@/lib/site";
 
 const ERRORS: Record<string, string> = {
   NOT_ENOUGH_COINS: "Pas assez de monnaie",

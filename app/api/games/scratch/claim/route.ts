@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { lockedResponse } from "@/lib/site";
 
 const ERRORS: Record<string, string> = {
   TICKET_NOT_FOUND: "Ce ticket n'existe pas.",

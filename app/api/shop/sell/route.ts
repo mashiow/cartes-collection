@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sellPrice } from "@/lib/shop";
+import { lockedResponse } from "@/lib/site";
 
 const ERRORS: Record<string, string> = {
   CARD_NOT_FOUND: "Cette carte n'existe pas.",

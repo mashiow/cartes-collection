@@ -63,7 +63,8 @@ export const ModelName = {
   News: 'News',
   QuizRound: 'QuizRound',
   ScratchTicket: 'ScratchTicket',
-  LimitedSeries: 'LimitedSeries'
+  LimitedSeries: 'LimitedSeries',
+  SiteSettings: 'SiteSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -257,6 +258,16 @@ export const LimitedSeriesScalarFieldEnum = {
 } as const
 
 export type LimitedSeriesScalarFieldEnum = (typeof LimitedSeriesScalarFieldEnum)[keyof typeof LimitedSeriesScalarFieldEnum]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  waitingEnabled: 'waitingEnabled',
+  launchAt: 'launchAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
 
 
 export const SortOrder = {
