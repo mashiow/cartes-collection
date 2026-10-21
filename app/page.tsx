@@ -3,7 +3,9 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import AuthButton from "@/components/AuthButton";
 import HomeIntro from "@/components/HomeIntro";
+import Reveal from "@/components/Reveal";
 import RewardsPanel from "@/components/RewardsPanel";
+import ScrollDown from "@/components/ScrollDown";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { DAILY_COINS, isWednesday, todayKey } from "@/lib/rewards";
@@ -12,20 +14,25 @@ export const dynamic = "force-dynamic";
 
 const buttonClass = "btn-sakura px-6 py-3 text-xl";
 
-// Ordre d'apparition : plus le numéro est grand, plus l'élément arrive tard
+// Ordre d'apparition des éléments du haut de page
 const step = (n: number) => ({ "--i": n }) as CSSProperties;
 
-const menu = [
-  { href: "/collection", label: "Voir la collection" },
-  { href: "/booster", label: "Ouvrir un booster" },
-  { href: "/boutique", label: "Boutique" },
-  { href: "/echanges", label: "Échanges" },
-  { href: "/jeux", label: "Mini-jeux" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/classement", label: "Classement" },
-  { href: "/profil", label: "Mon profil" },
-
+const tiles = [
+  { href: "/collection", icon: "🃏", title: "Collection", text: "Découvre toutes les cartes et retrouve celles qui te manquent." },
+  { href: "/booster", icon: "🎁", title: "Boosters", text: "Ouvre des boosters pour agrandir ta collection." },
+  { href: "/boutique", icon: "💰", title: "Boutique", text: "Revends tes doublons contre des pièces." },
+  { href: "/echanges", icon: "🔁", title: "Échanges", text: "Échange tes cartes avec les autres joueurs." },
+  { href: "/jeux", icon: "🎮", title: "Mini-jeux", text: "Joue chaque jour pour gagner des pièces." },
+  { href: "/classement", icon: "🏆", title: "Classement", text: "Compare ta collection à celle des autres." },
 ];
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mx-auto mb-10 w-fit rounded-xl bg-[#2b2b2b]/90 px-8 py-3 text-center text-white shadow-xl">
+      <h2 className="text-3xl font-bold md:text-4xl">{children}</h2>
+    </div>
+  );
+}
 
 export default async function Home() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -46,79 +53,126 @@ export default async function Home() {
 
   return (
     <HomeIntro>
-      <main className="mx-auto grid min-h-screen w-full max-w-[1800px] gap-8 p-6 lg:grid-cols-[300px_minmax(0,1fr)_300px] lg:items-center lg:px-10">
-        {/* Gauche : récompenses */}
-        <aside className="reveal reveal-left order-2 lg:order-1" style={step(3)}>
-          <RewardsPanel
-            loggedIn={!!session}
-            dailyCoins={DAILY_COINS}
-            dailyAvailable={!!session && user?.lastDailyDate !== today}
-            isWednesday={wednesday}
-            weeklyAvailable={
-              !!session && wednesday && user?.lastWeeklyDate !== today
-            }
-            freeBoosters={user?.freeBoosters ?? 0}
-          />
-        </aside>
-
-        {/* Centre : titre et boutons */}
-        <div className="order-1 flex flex-col items-center gap-10 text-center lg:order-2">
-          <div className="reveal" style={step(0)}>
-            <div className="title-frame px-6 py-8 md:px-14 md:py-10">
-              <p className="mb-3 text-xl text-gray-200 md:text-3xl">
-                Bienvenue sur le jeu de carte
-              </p>
-              <h1 className="title-logo text-6xl md:text-8xl">Anetsuki</h1>
-              <div className="title-divider">
-                <span />
-              </div>
+      {/* ---------- Haut de page : le logo ---------- */}
+      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 px-6 pb-28 pt-8 text-center">
+        <div className="reveal" style={step(0)}>
+          <div className="title-frame px-6 py-8 md:px-16 md:py-12">
+            <p className="mb-3 text-xl text-gray-200 md:text-3xl">
+              Bienvenue sur le jeu de cartes
+            </p>
+            <h1 className="title-logo text-6xl md:text-9xl">Anetsuki</h1>
+            <div className="title-divider">
+              <span />
             </div>
           </div>
-
-          <div className="reveal" style={step(1)}>
-            <AuthButton />
-          </div>
-
-          {menu.map((item, i) => (
-            <div key={item.href} className="reveal" style={step(2 + i)}>
-              <Link href={item.href} className={buttonClass}>
-                {item.label}
-              </Link>
-            </div>
-          ))}
         </div>
 
-        {/* Droite : dernières infos */}
-        <aside className="reveal reveal-right order-3" style={step(4)}>
-          <div className="panel-sakura">
-            <h2 className="panel-title">Dernières infos</h2>
-            {news.length === 0 ? (
-              <p className="text-center text-gray-300">
-                Rien de nouveau pour le moment.
-              </p>
-            ) : (
-              <div className="flex flex-col gap-4">
-                {news.map((n) => (
-                  <article
-                    key={n.id}
-                    className="border-b border-gray-600 pb-3 last:border-b-0 last:pb-0"
-                  >
-                    <p className="text-sm text-[#f4a7c0]">
-                      {n.createdAt.toLocaleDateString("fr-FR", {
-                        timeZone: "Europe/Paris",
-                        day: "numeric",
-                        month: "long",
-                      })}
-                    </p>
-                    <h3 className="text-xl font-semibold">{n.title}</h3>
-                    <p className="whitespace-pre-line text-gray-200">{n.body}</p>
-                  </article>
-                ))}
-              </div>
-            )}
-          </div>
-        </aside>
-      </main>
+        <p
+          className="reveal max-w-2xl rounded-xl bg-[#2b2b2b]/85 px-5 py-3 text-xl text-white md:text-2xl"
+          style={step(1)}
+        >
+          Collectionne les cartes, ouvre des boosters et échange avec la
+          communauté.
+        </p>
+
+        <div className="reveal flex flex-wrap justify-center gap-5" style={step(2)}>
+          {!session && <AuthButton />}
+          <Link href="/collection" className={buttonClass}>
+            Voir la collection
+          </Link>
+          <Link href="/booster" className={buttonClass}>
+            Ouvrir un booster
+          </Link>
+        </div>
+        {/* Décoration */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/decor/mitsuri.png"
+          alt=""
+          aria-hidden="true"
+          className="decor-float pointer-events-none absolute bottom-0 right-4 -z-0 hidden h-[75%] max-h-[640px] w-auto select-none object-contain xl:right-16 xl:block"
+        />
+        <ScrollDown targetId="contenu" />
+      </section>
+
+      {/* ---------- Récompenses et infos ---------- */}
+      <section
+        id="contenu"
+        className="mx-auto w-full max-w-6xl scroll-mt-20 px-6 py-16"
+      >
+        <Reveal>
+          <SectionTitle>Récompenses et infos</SectionTitle>
+        </Reveal>
+
+        <div className="grid gap-10 lg:grid-cols-2">
+          <Reveal>
+            <RewardsPanel
+              loggedIn={!!session}
+              dailyCoins={DAILY_COINS}
+              dailyAvailable={!!session && user?.lastDailyDate !== today}
+              isWednesday={wednesday}
+              weeklyAvailable={
+                !!session && wednesday && user?.lastWeeklyDate !== today
+              }
+              freeBoosters={user?.freeBoosters ?? 0}
+            />
+          </Reveal>
+
+          <Reveal delay={150}>
+            <div className="panel-sakura">
+              <h2 className="panel-title">Dernières infos</h2>
+              {news.length === 0 ? (
+                <p className="text-center text-gray-300">
+                  Rien de nouveau pour le moment.
+                </p>
+              ) : (
+                <div className="flex flex-col gap-4">
+                  {news.map((n) => (
+                    <article
+                      key={n.id}
+                      className="border-b border-gray-600 pb-3 last:border-b-0 last:pb-0"
+                    >
+                      <p className="text-sm text-[#f4a7c0]">
+                        {n.createdAt.toLocaleDateString("fr-FR", {
+                          timeZone: "Europe/Paris",
+                          day: "numeric",
+                          month: "long",
+                        })}
+                      </p>
+                      <h3 className="text-xl font-semibold">{n.title}</h3>
+                      <p className="whitespace-pre-line text-gray-200">
+                        {n.body}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- Par où commencer ---------- */}
+      <section className="mx-auto w-full max-w-6xl px-6 py-10">
+        <Reveal>
+          <SectionTitle>Par où commencer ?</SectionTitle>
+        </Reveal>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {tiles.map((t, i) => (
+            <Reveal key={t.href} delay={(i % 3) * 120}>
+              <Link
+                href={t.href}
+                className="panel-sakura block h-full text-center transition hover:-translate-y-2"
+              >
+                <p className="text-5xl">{t.icon}</p>
+                <h3 className="mt-2 text-2xl font-bold">{t.title}</h3>
+                <p className="mt-1 text-gray-300">{t.text}</p>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </HomeIntro>
   );
 }

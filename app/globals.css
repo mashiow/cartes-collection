@@ -549,3 +549,83 @@ html {
     animation: none;
   }
 }
+
+/* ---------- Interface du site ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Petite fleur du logo dans la barre du haut */
+.nav-flower {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: var(--sakura) center / contain no-repeat;
+}
+
+/* Apparition des blocs quand on défile */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Flèche qui rebondit sous le logo */
+.scroll-chevron {
+  display: inline-block;
+  animation: scroll-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .scroll-chevron {
+    animation: none;
+  }
+}
+
+/* Décoration qui flotte doucement */
+.decor-float {
+  animation: decor-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes decor-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decor-float {
+    animation: none;
+  }
+}
