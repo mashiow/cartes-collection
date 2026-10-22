@@ -5,14 +5,11 @@ import AuthButton from "@/components/AuthButton";
 import HomeIntro from "@/components/HomeIntro";
 import Reveal from "@/components/Reveal";
 import RewardsPanel from "@/components/RewardsPanel";
-import ScrollDown from "@/components/ScrollDown";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { DAILY_COINS, isWednesday, todayKey } from "@/lib/rewards";
 
 export const dynamic = "force-dynamic";
-
-const buttonClass = "btn-sakura px-6 py-3 text-xl";
 
 // Ordre d'apparition des éléments du haut de page
 const step = (n: number) => ({ "--i": n }) as CSSProperties;
@@ -54,7 +51,7 @@ export default async function Home() {
   return (
     <HomeIntro>
       {/* ---------- Haut de page : le logo ---------- */}
-      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 px-6 pb-28 pt-8 text-center">
+      <section className="relative flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center gap-8 px-6 pb-48 pt-8 text-center">
         <div className="reveal" style={step(0)}>
           <div className="title-frame px-6 py-8 md:px-16 md:py-12">
             <p className="mb-3 text-xl text-gray-200 md:text-3xl">
@@ -75,24 +72,11 @@ export default async function Home() {
           communauté.
         </p>
 
-        <div className="reveal flex flex-wrap justify-center gap-5" style={step(2)}>
-          {!session && <AuthButton />}
-          <Link href="/collection" className={buttonClass}>
-            Voir la collection
-          </Link>
-          <Link href="/booster" className={buttonClass}>
-            Ouvrir un booster
-          </Link>
-        </div>
-        {/* Décoration */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/decor/mitsuri.png"
-          alt=""
-          aria-hidden="true"
-          className="decor-float pointer-events-none absolute bottom-0 right-4 -z-0 hidden h-[75%] max-h-[640px] w-auto select-none object-contain xl:right-16 xl:block"
-        />
-        <ScrollDown targetId="contenu" />
+        {!session && (
+          <div className="reveal" style={step(2)}>
+            <AuthButton />
+          </div>
+        )}
       </section>
 
       {/* ---------- Récompenses et infos ---------- */}
