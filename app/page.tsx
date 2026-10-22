@@ -51,7 +51,7 @@ export default async function Home() {
   return (
     <HomeIntro>
       {/* ---------- Haut de page : le logo ---------- */}
-      <section className="relative flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center gap-8 px-6 pb-48 pt-8 text-center">
+            <section className="relative flex flex-col items-center justify-center gap-8 px-6 pb-16 pt-12 text-center">
         <div className="reveal" style={step(0)}>
           <div className="title-frame px-6 py-8 md:px-16 md:py-12">
             <p className="mb-3 text-xl text-gray-200 md:text-3xl">
@@ -77,6 +77,17 @@ export default async function Home() {
             <AuthButton />
           </div>
         )}
+
+        {/* Illustration entre l'accroche et les récompenses */}
+        <div className="reveal" style={step(3)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/decor/mitsuri.webp"
+            alt=""
+            aria-hidden="true"
+            className="decor-float pointer-events-none mx-auto h-[360px] w-auto select-none object-contain md:h-[460px]"
+          />
+        </div>
       </section>
 
       {/* ---------- Récompenses et infos ---------- */}
